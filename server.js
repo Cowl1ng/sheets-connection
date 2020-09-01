@@ -7,7 +7,7 @@ const doc = new GoogleSpreadsheet(googleDocID)
 
 // use service account creds
 
-const main = async () => {
+const googleSheetsConnection = async (matchID) => {
   try {
     await doc.useServiceAccountAuth({
       client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -15,18 +15,24 @@ const main = async () => {
     })
 
     await doc.loadInfo() // loads document properties and worksheets
-    console.log(doc.title)
+    // console.log(doc.sheetsById)
     await doc.updateProperties({ title: 'IPL_IMPORT' })
-    const sheet = doc.sheetsByIndex[0] // or use doc.sheetsById[id]
-    console.log(sheet.title)
-    console.log(sheet.rowCount)
+    // const sheet = doc.sheetsByIndex[1] // or use doc.sheetsById[id]
+    const sheets = doc.sheetsByIndex
+    for (const sheet of sheets) {
+      console.log(`Sheet Title: ${sheet.title}`)
+    }
+
+    // console.log(sheet.title)
+    // console.log(sheet.rowCount)
 
     // adding / removing sheets
-    const newSheet = await doc.addSheet({ title: 'hot new sheet!' })
+
+    // const newSheet = await doc.addSheet({ title: `${matchID}` })
     // await newSheet.delete()
   } catch (error) {
     console.error(error)
   }
 }
 
-main()
+googleSheetsConnection(1195573)
