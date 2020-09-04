@@ -8,8 +8,67 @@ import ResponseReducer from './responseReducer'
 
 import { GET_MATCH_STATS, MATCHES_LOADED } from './types'
 
+const { GoogleSpreadsheet } = require('google-spreadsheet')
+// Spreadsheet key is the long id in the sheets URL
+const doc = new GoogleSpreadsheet(
+  '17oti2EzpzhSPktutTukCRcJyhOKfC7w368OQm5r1Rk0'
+)
+
+// Headers for spreadsheet
+const headers = [
+  'MatchIDPN',
+  'PlayerID',
+  'Name',
+  'Runout',
+  'Stumped',
+  'Lbw',
+  'Catch',
+  'Dots',
+  'Wickets',
+  'RunsBowling',
+  'Maidens',
+  'Overs',
+  'Sixes',
+  'Fours',
+  'Balls',
+  'RunsBatting',
+  'MotM',
+]
+
+const updateSheet = async (matchID, headers, matchInfo) => {
+  const sheet = doc.sheetsByTitle[matchID]
+  try {
+    // Deleteing sheet then remaking it with new info
+    await sheet.delete()
+    const newSheet = await doc.addSheet({
+      title: `${matchID}`,
+      headerValues: headers,
+    })
+    const newRows = await newSheet.addRows(matchInfo)
+    console.log(`Update Sheet`)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const createSheet = async (matchID, headers, matchInfo) => {
+  console.log('Creating new sheet')
+  try {
+    const newSheet = await doc.addSheet({
+      title: `${matchID}`,
+      headerValues: headers,
+    })
+    console.log(`Adding rows`)
+    const newRows = await newSheet.addRows(matchInfo)
+    console.log(`Created Sheet`)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 class playerInfo {
-  constructor() {
+  constructor(matchID, player_number) {
+    this.MatchIDPN = '' + matchID + player_number
     this.PlayerID = null
     this.Name = null
     this.Runout = 0
@@ -35,6 +94,7 @@ const ResponseState = (props) => {
     matches: null,
     matchList1: null,
     matchList2: null,
+    matchID: 1195575,
   }
 
   const [state, dispatch] = useReducer(ResponseReducer, initialState)
@@ -62,6 +122,7 @@ const ResponseState = (props) => {
 
   // Submit match ID
   const getMatchStats = async (matchID, apiKey) => {
+    // Need to send matchstats along with matchID
     dispatch({ type: GET_MATCH_STATS, payload: fantasySummary })
   }
 
@@ -70,6 +131,7 @@ const ResponseState = (props) => {
     console.log(fantasySummary)
     console.log(`Orderin`)
     if (state.match) {
+      const matchID = state.matchID
       const matchStats = state.match.data
 
       const teamSheet1 = []
@@ -88,28 +150,28 @@ const ResponseState = (props) => {
 
       // PlayerID,	Name,	Runout,	Stumped,	Lbw,	Catch,	Dots,	Wickets,	RunsBowling,	Maidens,	Overs,	Sixess,	Fours,	Balls,	RunsBatting,	MOTM,
 
-      const player1 = new playerInfo()
-      const player2 = new playerInfo()
-      const player3 = new playerInfo()
-      const player4 = new playerInfo()
-      const player5 = new playerInfo()
-      const player6 = new playerInfo()
-      const player7 = new playerInfo()
-      const player8 = new playerInfo()
-      const player9 = new playerInfo()
-      const player10 = new playerInfo()
-      const player11 = new playerInfo()
-      const player12 = new playerInfo()
-      const player13 = new playerInfo()
-      const player14 = new playerInfo()
-      const player15 = new playerInfo()
-      const player16 = new playerInfo()
-      const player17 = new playerInfo()
-      const player18 = new playerInfo()
-      const player19 = new playerInfo()
-      const player20 = new playerInfo()
-      const player21 = new playerInfo()
-      const player22 = new playerInfo()
+      const player1 = new playerInfo(matchID, 'P1')
+      const player2 = new playerInfo(matchID, 'P2')
+      const player3 = new playerInfo(matchID, 'P3')
+      const player4 = new playerInfo(matchID, 'P4')
+      const player5 = new playerInfo(matchID, 'P5')
+      const player6 = new playerInfo(matchID, 'P6')
+      const player7 = new playerInfo(matchID, 'P7')
+      const player8 = new playerInfo(matchID, 'P8')
+      const player9 = new playerInfo(matchID, 'P9')
+      const player10 = new playerInfo(matchID, 'P10')
+      const player11 = new playerInfo(matchID, 'P11')
+      const player12 = new playerInfo(matchID, 'P12')
+      const player13 = new playerInfo(matchID, 'P13')
+      const player14 = new playerInfo(matchID, 'P14')
+      const player15 = new playerInfo(matchID, 'P15')
+      const player16 = new playerInfo(matchID, 'P16')
+      const player17 = new playerInfo(matchID, 'P17')
+      const player18 = new playerInfo(matchID, 'P18')
+      const player19 = new playerInfo(matchID, 'P19')
+      const player20 = new playerInfo(matchID, 'P20')
+      const player21 = new playerInfo(matchID, 'P21')
+      const player22 = new playerInfo(matchID, 'P22')
 
       const matchInfo = [
         player1,
@@ -204,15 +266,9 @@ const ResponseState = (props) => {
           player['catch'],
         ])
       )
-
+      console.log(`MOTM: ${matchStats['man-of-the-match'].pid}`)
       // Combining stats
-      // // Example of matchInfo needed for spreadsheets API
-      // const matchInfo = [
-      //   { Name: 'Jonathon Cook', PlayerID: 1137279, RunsBatting: '40', Balls: '25' },
-      //   { Name: 'Chris Tremain', PlayerID: 553800, RunsBatting: '20', Balls: '5' },
-      // ]
-      //
-      var index = 0
+
       // Batting Stats
       // pid, Sixes, Fours, balls, runs
       // Bowling stats
@@ -221,6 +277,7 @@ const ResponseState = (props) => {
       // pid, RO, S, Lbw, C
       // Combined stats
       // PlayerID,	Name,	Runout,	Stumped,	Lbw,	Catch,	Dots,	Wickets,	RunsBowling,	Maidens,	Overs,	Sixes,	Fours,	Balls,	RunsBatting,	MOTM,
+      var index = 0
       teamSheet1.forEach((player) => {
         matchInfo[index].Name = player[1]
         matchInfo[index].PlayerID = player[0]
@@ -249,6 +306,9 @@ const ResponseState = (props) => {
             matchInfo[index].Catch = fielder[4]
           }
         })
+        if (player[0] === matchStats['man-of-the-match'].pid) {
+          matchInfo[index].MotM = 1
+        }
         index++
       })
       teamSheet2.forEach((player) => {
@@ -279,8 +339,37 @@ const ResponseState = (props) => {
             matchInfo[index].Catch = fielder[4]
           }
         })
+        if (player.pid === matchStats['man-of-the-match'].pid) {
+          matchInfo[index].MotM = 1
+        }
         index++
       })
+      const res = await Axios.get(`/api/key`)
+      console.log(`RES:${JSON.stringify(res)}`)
+      // Authentication for connecting to sheet
+      await doc.useServiceAccountAuth({
+        client_email: res.data.client_email,
+        private_key: res.data.private_key,
+      })
+      console.log('Doc accessed')
+      // Loads document properties and worksheets
+      await doc.loadInfo()
+      console.log('Doc loaded')
+      const sheets = doc.sheetsByIndex
+
+      // Check if sheet already exists
+      var sheetTitles = []
+      for (const sheet of sheets) {
+        sheetTitles.push(sheet.title)
+      }
+      const sheetExists = sheetTitles.includes(`${matchID}`)
+
+      // If sheet exists update if not create it
+      if (sheetExists) {
+        updateSheet(matchID, headers, matchInfo)
+      } else {
+        createSheet(matchID, headers, matchInfo)
+      }
 
       console.log(`ST1: ${JSON.stringify(teamSheet1)}`)
       console.log(`ST2: ${JSON.stringify(matchInfo)}`)

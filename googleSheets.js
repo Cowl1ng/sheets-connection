@@ -25,13 +25,7 @@ const headers = [
   'MOTM',
 ]
 
-// Test Information
-const matchInfo = [
-  { Name: 'Jonathon Cook', PlayerID: 1137279, RunsBatting: '40', Balls: '25' },
-  { Name: 'Chris Tremain', PlayerID: 553800, RunsBatting: '20', Balls: '5' },
-]
-
-const googleSheetsConnection = async (matchID) => {
+googleSheetsConnection = async (matchID, matchInfo) => {
   try {
     // Authentication for connecting to sheet
     await doc.useServiceAccountAuth({
@@ -92,5 +86,3 @@ const createSheet = async (matchID, headers, matchInfo) => {
     console.error(error)
   }
 }
-
-googleSheetsConnection(1195576)
