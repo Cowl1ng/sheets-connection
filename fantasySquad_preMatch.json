@@ -1,0 +1,57 @@
+{
+  "squad": [
+    {
+      "name": "GAW",
+      "players": [
+        { "name": "Chris Green", "pid": "787073" },
+        { "name": "Anthony Bramble", "pid": "480693" },
+        { "name": "Chandrapaul Hemraj", "pid": "530811" },
+        { "name": "Shimron Hetmyer", "pid": "670025" },
+        { "name": "Imran Tahir", "pid": "40618" },
+        { "name": "Jessy Singh", "pid": "772471" },
+        { "name": "Brandon King", "pid": "670035" },
+        { "name": "Kissoondath Magram", "pid": "1213280" },
+        { "name": "Naveen-ul-Haq", "pid": "793447" },
+        { "name": "Ashmead Nedd", "pid": "1131647" },
+        { "name": "Keemo Paul", "pid": "677081" },
+        { "name": "Nicholas Pooran", "pid": "604302" },
+        { "name": "Sherfane Rutherford", "pid": "914541" },
+        { "name": "Romario Shepherd", "pid": "677077" },
+        { "name": "Kevin Sinclair", "pid": "1206110" },
+        { "name": "Odean Smith", "pid": "820691" },
+        { "name": "Ross Taylor", "pid": "38699" }
+      ]
+    },
+    {
+      "name": "ZOUKS",
+      "players": [
+        { "name": "Daren Sammy", "pid": "53115" },
+        { "name": "Leniko Boucher", "pid": "906745" },
+        { "name": "Roston Chase", "pid": "391832" },
+        { "name": "Rahkeem Cornwall", "pid": "494581" },
+        { "name": "Mark Deyal", "pid": "848623" },
+        { "name": "Andre Fletcher", "pid": "51862" },
+        { "name": "Javelle Glen", "pid": "1152716" },
+        { "name": "Kavem Hodge", "pid": "348091" },
+        { "name": "Chemar Holder", "pid": "914519" },
+        { "name": "Scott Kuggeleijn", "pid": "539548" },
+        { "name": "Obed McCoy", "pid": "906783" },
+        { "name": "Kimani Melius", "pid": "1131646" },
+        { "name": "Mohammad Nabi", "pid": "25913" },
+        { "name": "Najibullah Zadran", "pid": "524049" },
+        { "name": "Saad Bin Zafar", "pid": "359746" },
+        { "name": "Kesrick Williams", "pid": "450075" },
+        { "name": "Zahir Khan", "pid": "712219" }
+      ]
+    }
+  ],
+  "cache": true,
+  "v": "1",
+  "ttl": 12,
+  "provider": {
+    "source": "Various",
+    "url": "https://cricapi.com/",
+    "pubDate": "2020-09-02T21:59:23.194Z"
+  },
+  "creditsLeft": 176
+}

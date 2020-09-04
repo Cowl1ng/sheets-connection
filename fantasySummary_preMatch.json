@@ -1,0 +1,24 @@
+{
+  "dateTimeGMT": "2020-09-02T21:30:00.000Z",
+  "data": {
+    "fielding": [],
+    "bowling": [],
+    "batting": [],
+    "team": [
+      { "players": [], "name": "Guyana Amazon Warriors" },
+      { "players": [], "name": "St Lucia Zouks" }
+    ],
+    "man-of-the-match": "",
+    "toss_winner_team": "no toss",
+    "matchStarted": true
+  },
+  "cache3": true,
+  "creditsLeft": 176,
+  "v": "1",
+  "ttl": 19,
+  "provider": {
+    "source": "Various",
+    "url": "https://cricapi.com/",
+    "pubDate": "2020-09-02T21:58:14.733Z"
+  }
+}

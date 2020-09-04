@@ -1,0 +1,2 @@
+export const MATCHES_LOADED = 'MATCHES_LOADED'
+export const GET_MATCH_STATS = 'GET_MATCH_STATS'
