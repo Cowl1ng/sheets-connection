@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useFormik } from 'formik'
 
 import Container from 'react-bootstrap/Container'
@@ -13,7 +13,7 @@ require('dotenv').config()
 
 const FrontPage = () => {
   const responseContext = useContext(ResponseContext)
-  const { getMatchStats, match } = responseContext
+  const { getMatchStats, orderStats, match } = responseContext
 
   const formik = useFormik({
     initialValues: {
@@ -27,6 +27,9 @@ const FrontPage = () => {
     },
   })
 
+  useEffect(() => {
+    orderStats()
+  }, [match])
   return (
     <Container fluid>
       <Row className='justify-content-md-center mt-3'>
@@ -63,7 +66,7 @@ const FrontPage = () => {
         <Col>
           <div>
             {match ? (
-              <h1>
+              <div>
                 {match.data.batting.map((team) =>
                   team.scores.map((batter) => (
                     <h1>
@@ -77,9 +80,11 @@ const FrontPage = () => {
                     </h1>
                   ))
                 )}
-              </h1>
+              </div>
             ) : (
-              <h1>Match Not loaded</h1>
+              <div>
+                <h1>Match Not loaded</h1>
+              </div>
             )}
           </div>
         </Col>

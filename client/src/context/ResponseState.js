@@ -45,33 +45,106 @@ const ResponseState = (props) => {
   }
 
   //Ordering match stats
-  const orderStats = async (match) => {
-    const matchStats = state.match.data
+  const orderStats = async () => {
+    console.log(fantasySummary)
+    console.log(`Orderin`)
+    if (state.match) {
+      const matchStats = state.match.data
+      // // Example of matchInfo needed for spreadsheets API
+      // const matchInfo = [
+      //   { Name: 'Jonathon Cook', PlayerID: 1137279, RunsBatting: '40', Balls: '25' },
+      //   { Name: 'Chris Tremain', PlayerID: 553800, RunsBatting: '20', Balls: '5' },
+      // ]
 
-    const battingStatsTeam1 = state.match.data.batting[0]
-    const bowlingStatsTeam1 = state.match.data.bowling[1]
-    const fieldingStatsTeam1 = state.match.data.fielding[1]
+      const battingStatsTeam1 = []
+      // pid,6s, balls, 4s, runs
+      const bowlingStatsTeam1 = []
+      // pid, Zeros, W, R, M, O
+      const fieldingStatsTeam1 = []
+      // pid, RO, S, Lbw, C
 
-    const battingStatsTeam2 = state.match.data.batting[1]
-    const bowlingStatsTeam2 = state.match.data.bowling[0]
-    const fieldingStatsTeam2 = state.match.data.fielding[0]
+      const battingStatsTeam2 = []
+      const bowlingStatsTeam2 = []
+      const fieldingStatsTeam2 = []
 
-    const statsTeam1 = []
-    const statsTeam2 = []
-    {
-      match.data.batting.map((team) =>
-        team.scores.map((batter) => (
-          <h1>
-            Batter: {batter.batsman}
-            <br />
-            Runs: {batter.R}
-            <br />
-            Balls: {batter.B}
-            <br />
-            <br />
-          </h1>
-        ))
+      const teamSheet1 = []
+      const teamSheet2 = []
+
+      const matchInfo = []
+
+      matchStats.team[0].players.forEach((player) =>
+        teamSheet1.push([player.name, player.pid])
       )
+      matchStats.team[1].players.forEach((player) =>
+        teamSheet2.push([player.name, player.pid])
+      )
+      // Batting Stats
+      // pid, 6s, 4s, balls, runs
+      matchStats.batting[0].scores.forEach((player) =>
+        battingStatsTeam1.push([
+          player.pid,
+          player['6s'],
+          player['4s'],
+          player['B'],
+          player['R'],
+        ])
+      )
+      matchStats.batting[1].scores.forEach((player) =>
+        battingStatsTeam2.push([
+          player.pid,
+          player['6s'],
+          player['4s'],
+          player['B'],
+          player['R'],
+        ])
+      )
+      // Bowling stats
+      // pid, Zeros, W, R, M, O
+      matchStats.bowling[1].scores.forEach((player) =>
+        bowlingStatsTeam1.push([
+          player.pid,
+          player['0s'],
+          player.W,
+          player.R,
+          player.M,
+          player.O,
+        ])
+      )
+      matchStats.bowling[0].scores.forEach((player) =>
+        bowlingStatsTeam2.push([
+          player.pid,
+          player['0s'],
+          player.W,
+          player.R,
+          player.M,
+          player.O,
+        ])
+      )
+      // pid, RO, S, Lbw, C
+      matchStats.fielding[1].scores.forEach((player) =>
+        fieldingStatsTeam1.push([
+          player.pid,
+          player['runout'],
+          player['stumped'],
+          player['lbw'],
+          player['catch'],
+        ])
+      )
+      matchStats.fielding[0].scores.forEach((player) =>
+        fieldingStatsTeam2.push([
+          player.pid,
+          player['runout'],
+          player['stumped'],
+          player['lbw'],
+          player['catch'],
+        ])
+      )
+
+      // Combining stats
+      teamSheet1.forEach((player) => {})
+
+      console.log(`ST1: ${JSON.stringify(teamSheet1)}`)
+      console.log(`ST2: ${JSON.stringify(fieldingStatsTeam2)}`)
     }
   }
 
@@ -84,6 +157,7 @@ const ResponseState = (props) => {
         matchList2: state.matchList2,
         loadUpcomingMatches,
         getMatchStats,
+        orderStats,
       }}
     >
       {props.children}
