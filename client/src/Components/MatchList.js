@@ -13,7 +13,7 @@ const MatchList = () => {
   const { loadUpcomingMatches, matchList1, matchList2 } = responseContext
 
   useEffect(() => {
-    // loadUpcomingMatches('API_KEY_1')
+    loadUpcomingMatches('API_KEY_1')
     console.log('loading matches')
   }, [])
 
@@ -24,9 +24,11 @@ const MatchList = () => {
           {matchList1 ? (
             <div>
               {matchList1.map((match) => (
-                <Card style={{ height: 150 }} key={match.name}>
+                <Card style={{ height: 150 }} key={match.unique_id}>
                   <Card.Body>
-                    <Card.Title>{match.name}</Card.Title>
+                    <Card.Title>
+                      {match['team-1']} v {match['team-2']}
+                    </Card.Title>
                     <Card.Text>
                       Date: {match.date}
                       <br />
@@ -46,9 +48,11 @@ const MatchList = () => {
           {matchList2 ? (
             <div>
               {matchList2.map((match) => (
-                <Card style={{ height: 150 }} key={match.name}>
+                <Card style={{ height: 150 }} key={match.unique_id}>
                   <Card.Body>
-                    <Card.Title>{match.name}</Card.Title>
+                    <Card.Title>
+                      {match['team-1']} v {match['team-2']}
+                    </Card.Title>
                     <Card.Text>
                       Date: {match.date}
                       <br />

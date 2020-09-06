@@ -1,63 +1,7 @@
 const express = require('express')
 const { default: Axios } = require('axios')
 const router = express.Router()
-const { GoogleSpreadsheet } = require('google-spreadsheet')
 require('dotenv').config()
-
-// Spreadsheet key is the long id in the sheets URL
-const doc = new GoogleSpreadsheet(process.env.GOOGLE_DOC_ID)
-
-// Headers for spreadsheet
-const headers = [
-  'MatchIDPN',
-  'PlayerID',
-  'Name',
-  'Runout',
-  'Stumped',
-  'Lbw',
-  'Catch',
-  'Dots',
-  'Wickets',
-  'RunsBowling',
-  'Maidens',
-  'Overs',
-  'Sixes',
-  'Fours',
-  'Balls',
-  'RunsBatting',
-  'MOTM',
-]
-
-const updateSheet = async (matchID, headers, matchInfo) => {
-  const sheet = doc.sheetsByTitle[matchID]
-  try {
-    // Deleteing sheet then remaking it with new info
-    await sheet.delete()
-    const newSheet = await doc.addSheet({
-      title: `${matchID}`,
-      headerValues: headers,
-    })
-    const newRows = await newSheet.addRows(matchInfo)
-    console.log(`Update Sheet`)
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-const createSheet = async (matchID, headers, matchInfo) => {
-  console.log('Creating new sheet')
-  try {
-    const newSheet = await doc.addSheet({
-      title: `${matchID}`,
-      headerValues: headers,
-    })
-    console.log(`Adding rows`)
-    const newRows = await newSheet.addRows(matchInfo)
-    console.log(`Created Sheet`)
-  } catch (error) {
-    console.error(error)
-  }
-}
 
 // @route     GET api
 // @desc      GET upcoming match information
@@ -67,7 +11,7 @@ router.get('/', async (req, res) => {
   const { apiKey } = req.query
   try {
     const response = await Axios.get(
-      `https://cricapi.com/api/matchCalendar?apikey=${process.env[apiKey]}`
+      `https://cricapi.com/api/matches?apikey=${process.env[apiKey]}`
     )
     res.json(response.data)
   } catch (error) {

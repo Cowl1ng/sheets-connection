@@ -87,8 +87,8 @@ class playerInfo {
 }
 
 class TeamInfo {
-  constructor(matchID, team_number) {
-    this.MatchIDPN = '' + matchID + team_number
+  constructor(matchID, team_name) {
+    this.MatchIDPN = '' + matchID + team_name
     this.PlayerID = null
     this.Name = null
     this.Runout = 0
@@ -114,12 +114,27 @@ const ResponseState = (props) => {
     const matchList1 = []
     const matchList2 = []
     const res = await Axios.get(`/api?apiKey=${apiKey}`)
-    const matches = res.data.data.slice(0, 10)
-    for (var i = 0; i < matches.length; i++) {
+    const matches = res.data.matches.filter(
+      (match) => match.type === 'Twenty20'
+    )
+    matches.forEach(
+      (match) =>
+        (match.dateTimeGMT = match.dateTimeGMT
+          .replace('T', ' ')
+          .replace('Z', 'GMT'))
+    )
+
+    const currentDate = Date.now()
+    const datedMatches = matches.filter(
+      (match) => Date.parse(match.dateTimeGMT) > currentDate
+    )
+    console.log(`DM: ${JSON.stringify(datedMatches)}`)
+    const nextMatches = res.data.matches.slice(0, 10)
+    for (var i = 0; i < nextMatches.length; i++) {
       if (i % 2 === 0) {
-        matchList1.push(matches[i])
+        matchList1.push(nextMatches[i])
       } else {
-        matchList2.push(matches[i])
+        matchList2.push(nextMatches[i])
       }
     }
     const payload = {
@@ -199,8 +214,8 @@ const ResponseState = (props) => {
       const player21 = new playerInfo(matchID, 'P21')
       const player22 = new playerInfo(matchID, 'P22')
 
-      const team1 = new TeamInfo(matchID, 'T1')
-      const team2 = new TeamInfo(matchID, 'T2')
+      const team1 = new TeamInfo(matchID, matchStats.team[0].name)
+      const team2 = new TeamInfo(matchID, matchStats.team[1].name)
       const teamHeadings = {
         Name: 'Team Names',
         Runout: 'Score',

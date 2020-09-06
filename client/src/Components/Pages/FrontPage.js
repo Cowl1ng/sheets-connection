@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 
 import Container from 'react-bootstrap/Container'
@@ -13,7 +13,10 @@ require('dotenv').config()
 
 const FrontPage = () => {
   const responseContext = useContext(ResponseContext)
-  const { getMatchStats, orderStats, match } = responseContext
+  const { getMatchStats, orderStats, match, matchScore } = responseContext
+
+  const [loading, setLoading] = useState(false)
+  const [loaded, setLoaded] = useState(false)
 
   const formik = useFormik({
     initialValues: {
@@ -24,11 +27,18 @@ const FrontPage = () => {
       const { matchID, apiKey } = values
       getMatchStats(matchID, apiKey)
       // alert(JSON.stringify(values, null, 2))
+      setLoading(true)
     },
   })
 
   useEffect(() => {
     orderStats()
+    setLoading(false)
+    if (match) {
+      setLoaded(true)
+    } else {
+      setLoaded(false)
+    }
   }, [match])
   return (
     <Container fluid>
@@ -56,37 +66,25 @@ const FrontPage = () => {
             >
               <option value='API_KEY_1'>API Key 1</option>
               <option value='API_KEY_2'>API Key 2</option>
+              <option value='API_KEY_2'>API Key 3</option>
+              <option value='API_KEY_2'>API Key 4</option>
+              <option value='API_KEY_2'>API Key 5</option>
             </select>
             <br />
             <button type='submit'>Submit</button>
           </form>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <div>
-            {match ? (
-              <div>
-                {match.data.batting.map((team) =>
-                  team.scores.map((batter) => (
-                    <h1>
-                      Batter: {batter.batsman}
-                      <br />
-                      Runs: {batter.R}
-                      <br />
-                      Balls: {batter.B}
-                      <br />
-                      <br />
-                    </h1>
-                  ))
-                )}
-              </div>
-            ) : (
-              <div>
-                <h1>Match Not loaded</h1>
-              </div>
-            )}
-          </div>
+
+          {loading ? (
+            <h1>LOADING...</h1>
+          ) : loaded ? (
+            <h1>
+              {matchScore.description}
+              <br />
+              {match.creditsLeft} credits left
+            </h1>
+          ) : (
+            <h1>Not loaded</h1>
+          )}
         </Col>
       </Row>
     </Container>
