@@ -1,0 +1,228 @@
+{
+  "dateTimeGMT": "2020-09-05T14:00:00.000Z",
+  "data": {
+    "fielding": [
+      {
+        "title": "Fielding for Trinbago Knight Riders Innings (20 overs maximum)St Lucia Zouks Team",
+        "scores": []
+      }
+    ],
+    "bowling": [
+      {
+        "scores": [
+          {
+            "NB": "0",
+            "WD": "0",
+            "6s": 0,
+            "4s": 0,
+            "0s": 4,
+            "Econ": "2.00",
+            "W": "0",
+            "R": "2",
+            "M": "0",
+            "O": "1",
+            "bowler": "SC Kuggeleijn",
+            "pid": "539548"
+          },
+          {
+            "NB": null,
+            "WD": null,
+            "6s": 0,
+            "4s": 0,
+            "0s": 0,
+            "Econ": 0,
+            "O": "Wicketkeeper",
+            "bowler": "Andre Fletcher   ",
+            "pid": "51862"
+          },
+          {
+            "NB": null,
+            "WD": null,
+            "6s": 0,
+            "4s": 0,
+            "0s": 0,
+            "Econ": 0,
+            "O": "Batsman",
+            "bowler": "Kimani Melius  ",
+            "pid": "1131646"
+          },
+          {
+            "NB": null,
+            "WD": null,
+            "6s": 0,
+            "4s": 0,
+            "0s": 0,
+            "Econ": 0,
+            "O": "Batsman",
+            "bowler": "Mark Deyal  ",
+            "pid": "848623"
+          },
+          {
+            "NB": null,
+            "WD": null,
+            "6s": 0,
+            "4s": 0,
+            "0s": 0,
+            "Econ": 0,
+            "O": "Batsman",
+            "bowler": "Leniko Boucher  ",
+            "pid": "906745"
+          },
+          {
+            "NB": null,
+            "WD": null,
+            "6s": 0,
+            "4s": 0,
+            "0s": 0,
+            "Econ": 0,
+            "O": "Batsman",
+            "bowler": "Najibullah Zadran  ",
+            "pid": "524049"
+          },
+          {
+            "NB": null,
+            "WD": null,
+            "6s": 0,
+            "4s": 0,
+            "0s": 0,
+            "Econ": 0,
+            "O": "Allrounder",
+            "bowler": "Mohammad Nabi  ",
+            "pid": "25913"
+          },
+          {
+            "NB": null,
+            "WD": null,
+            "6s": 0,
+            "4s": 0,
+            "0s": 0,
+            "Econ": 0,
+            "O": "Allrounder",
+            "bowler": "Roston Chase  ",
+            "pid": "391832"
+          },
+          {
+            "NB": null,
+            "WD": null,
+            "6s": 0,
+            "4s": 0,
+            "0s": 0,
+            "Econ": 0,
+            "O": "Allrounder",
+            "bowler": "Daren Sammy (c) ",
+            "pid": "53115"
+          },
+          {
+            "NB": null,
+            "WD": null,
+            "6s": 0,
+            "4s": 0,
+            "0s": 0,
+            "Econ": 0,
+            "O": "Allrounder",
+            "bowler": "Scott Kuggeleijn  ",
+            "pid": "539548"
+          },
+          {
+            "NB": null,
+            "WD": null,
+            "6s": 0,
+            "4s": 0,
+            "0s": 0,
+            "Econ": 0,
+            "O": "Bowler",
+            "bowler": "Kesrick Williams  ",
+            "pid": "450075"
+          },
+          {
+            "NB": null,
+            "WD": null,
+            "6s": 0,
+            "4s": 0,
+            "0s": 0,
+            "Econ": 0,
+            "O": "Bowler",
+            "bowler": "Zahir Khan  ",
+            "pid": "712219"
+          }
+        ],
+        "title": "Bowling To Trinbago Knight Riders Innings (20 overs maximum)St Lucia Zouks Team"
+      }
+    ],
+    "batting": [
+      {
+        "scores": [
+          {
+            "SR": 25,
+            "6s": 0,
+            "4s": 0,
+            "M": 0,
+            "B": 4,
+            "R": 1,
+            "dismissal-info": "",
+            "batsman": "LMP Simmons",
+            "pid": "53116"
+          },
+          {
+            "SR": 50,
+            "6s": 0,
+            "4s": 0,
+            "M": 0,
+            "B": 2,
+            "R": 1,
+            "dismissal-info": "",
+            "batsman": "T Webster",
+            "pid": "1091078"
+          }
+        ],
+        "title": "Trinbago Knight Riders Innings (20 overs maximum)St Lucia Zouks Team"
+      }
+    ],
+    "team": [
+      {
+        "players": [
+          { "name": "Lendl Simmons", "pid": "53116" },
+          { "name": "Tion Webster", "pid": "1091078" },
+          { "name": "Darren Bravo", "pid": "277472" },
+          { "name": "Tim Seifert", "pid": "625964" },
+          { "name": "Sikandar Raza", "pid": "299572" },
+          { "name": "Dwayne Bravo", "pid": "51439" },
+          { "name": "Kieron Pollard", "pid": "230559" },
+          { "name": "Akeal Hosein", "pid": "530812" },
+          { "name": "Khary Pierre", "pid": "581160" },
+          { "name": "Fawad Ahmed", "pid": "240609" },
+          { "name": "Jayden Seales", "pid": "1199304" }
+        ],
+        "name": "Trinbago Knight Riders"
+      },
+      {
+        "players": [
+          { "name": "Andre Fletcher", "pid": "51862" },
+          { "name": "Kimani Melius", "pid": "1131646" },
+          { "name": "Mark Deyal", "pid": "848623" },
+          { "name": "Leniko Boucher", "pid": "906745" },
+          { "name": "Najibullah Zadran", "pid": "524049" },
+          { "name": "Mohammad Nabi", "pid": "25913" },
+          { "name": "Roston Chase", "pid": "391832" },
+          { "name": "Daren Sammy", "pid": "53115" },
+          { "name": "Scott Kuggeleijn", "pid": "539548" },
+          { "name": "Kesrick Williams", "pid": "450075" },
+          { "name": "Zahir Khan", "pid": "712219" }
+        ],
+        "name": "St Lucia Zouks"
+      }
+    ],
+    "man-of-the-match": "",
+    "toss_winner_team": "St Lucia Zouks",
+    "matchStarted": true
+  },
+  "cache3": true,
+  "creditsLeft": 70,
+  "v": "1",
+  "ttl": 7,
+  "provider": {
+    "source": "Various",
+    "url": "https://cricapi.com/",
+    "pubDate": "2020-09-05T14:13:10.545Z"
+  }
+}

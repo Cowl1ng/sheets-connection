@@ -12,7 +12,9 @@ export default (state, action) => {
     case GET_MATCH_STATS:
       return {
         ...state,
-        match: action.payload,
+        match: action.payload.matchStats,
+        matchScore: action.payload.matchScore,
+        matchID: action.payload.matchID,
       }
     default:
       return state

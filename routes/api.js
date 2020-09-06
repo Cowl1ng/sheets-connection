@@ -80,18 +80,23 @@ router.get('/', async (req, res) => {
 // @desc      GET get stats for 1 game
 // @access    Public
 
-router.get('/squad', async (req, res) => {
+router.get('/stats', async (req, res) => {
   const { matchID, apiKey } = req.query
+  console.log(`MID: ${matchID}`)
+  console.log(process.env[apiKey])
   try {
     const response = await Axios.get(
       `https://cricapi.com/api/fantasySummary?apikey=${process.env[apiKey]}&unique_id=${matchID}`
     )
-    res.json(response.data)
+    const response2 = await Axios.get(
+      `https://cricapi.com/api/cricketScore?apikey=${process.env[apiKey]}&unique_id=${matchID}`
+    )
+    payload = { matchStats: response.data, matchScore: response2.data }
+    res.json(payload)
   } catch (error) {
     console.error(error.message)
     res.status(500).send('Server Error')
   }
-  res.json(response.data)
 })
 
 // @route     GET api/sheet

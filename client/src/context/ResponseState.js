@@ -2,6 +2,8 @@ import React, { useReducer } from 'react'
 import Axios from 'axios'
 
 import fantasySummary from '../fantasySummary.json'
+import cricketScore from '../cricktScore.json'
+import fantasyAPI from '../fantasyAPI.json'
 
 import ResponseContext from './responseContext'
 import ResponseReducer from './responseReducer'
@@ -45,22 +47,18 @@ const updateSheet = async (matchID, headers, matchInfo) => {
       headerValues: headers,
     })
     const newRows = await newSheet.addRows(matchInfo)
-    console.log(`Update Sheet`)
   } catch (error) {
     console.error(error)
   }
 }
 
 const createSheet = async (matchID, headers, matchInfo) => {
-  console.log('Creating new sheet')
   try {
     const newSheet = await doc.addSheet({
       title: `${matchID}`,
       headerValues: headers,
     })
-    console.log(`Adding rows`)
     const newRows = await newSheet.addRows(matchInfo)
-    console.log(`Created Sheet`)
   } catch (error) {
     console.error(error)
   }
@@ -88,13 +86,25 @@ class playerInfo {
   }
 }
 
+class TeamInfo {
+  constructor(matchID, team_number) {
+    this.MatchIDPN = '' + matchID + team_number
+    this.PlayerID = null
+    this.Name = null
+    this.Runout = 0
+    this.Stumped = 0
+    this.Lbw = 0
+  }
+}
+
 const ResponseState = (props) => {
   const initialState = {
     match: null,
+    matchScore: null,
     matches: null,
     matchList1: null,
     matchList2: null,
-    matchID: 1195575,
+    matchID: null,
   }
 
   const [state, dispatch] = useReducer(ResponseReducer, initialState)
@@ -122,17 +132,33 @@ const ResponseState = (props) => {
 
   // Submit match ID
   const getMatchStats = async (matchID, apiKey) => {
-    // Need to send matchstats along with matchID
-    dispatch({ type: GET_MATCH_STATS, payload: fantasySummary })
+    const res = await Axios.get(
+      `/api/stats?apiKey=${apiKey}&matchID=${matchID}`
+    )
+    dispatch({
+      type: GET_MATCH_STATS,
+      payload: {
+        matchStats: res.data.matchStats,
+        matchScore: res.data.matchScore,
+        matchID: matchID,
+      },
+    })
+    // dispatch({
+    //   type: GET_MATCH_STATS,
+    //   payload: {
+    //     matchStats: fantasyAPI,
+    //     matchScore: cricketScore,
+    //     matchID: matchID,
+    //   },
+    // })
   }
 
   //Ordering match stats
   const orderStats = async () => {
-    console.log(fantasySummary)
-    console.log(`Orderin`)
     if (state.match) {
       const matchID = state.matchID
       const matchStats = state.match.data
+      const matchScore = state.matchScore
 
       const teamSheet1 = []
       // pid, name
@@ -173,6 +199,16 @@ const ResponseState = (props) => {
       const player21 = new playerInfo(matchID, 'P21')
       const player22 = new playerInfo(matchID, 'P22')
 
+      const team1 = new TeamInfo(matchID, 'T1')
+      const team2 = new TeamInfo(matchID, 'T2')
+      const teamHeadings = {
+        Name: 'Team Names',
+        Runout: 'Score',
+        Stumped: 'Wickets',
+        Lbw: 'Overs Faced',
+      }
+      const blankHeadings = {}
+
       const matchInfo = [
         player1,
         player2,
@@ -196,14 +232,64 @@ const ResponseState = (props) => {
         player20,
         player21,
         player22,
+        blankHeadings,
+        teamHeadings,
+        team1,
+        team2,
       ]
 
-      matchStats.team[0].players.forEach((player) =>
-        teamSheet1.push([player.pid, player.name])
-      )
-      matchStats.team[1].players.forEach((player) =>
-        teamSheet2.push([player.pid, player.name])
-      )
+      team1.Name = matchScore['team-1']
+      team2.Name = matchScore['team-2']
+
+      // Need to check for team name in string then checkk for scores
+      const splitScore = matchScore.score.split(' v ')
+      const team1Score = splitScore[0]
+      const team2Score = splitScore[1]
+
+      // Check if score contains /
+      const score1Exists = team1Score.includes('/')
+      const score2Exists = team2Score.includes('/')
+
+      if (score1Exists) {
+        const split1 = team1Score.split('/')
+        team1.Runout = split1[0].substring(split1[0].length - 3)
+        const wickets1 = split1[1].split('*')
+        team1.Stumped = wickets1[0]
+      }
+      if (score2Exists) {
+        const split2 = team2Score.split('/')
+        team2.Runout = split2[0].substring(split2[0].length - 3)
+        const wickets2 = split2[1].split('*')
+        team2.Stumped = wickets2[0]
+      }
+
+      var ballsFaced1 = 0
+      var ballsFaced2 = 0
+      for (var x = 0; x < matchStats.bowling[0].scores.length; x++) {
+        ballsFaced1 = +ballsFaced1 + +matchStats.bowling[0].scores[x].O
+      }
+      for (x = 0; x < matchStats.bowling[1].scores.length; x++) {
+        ballsFaced2 = +ballsFaced2 + +matchStats.bowling[1].scores[x].O
+      }
+
+      team1.Lbw = ballsFaced1
+      team2.Lbw = ballsFaced2
+
+      if (matchStats.fielding[0].title.includes(matchStats.team[0].name)) {
+        matchStats.team[0].players.forEach((player) =>
+          teamSheet1.push([player.pid, player.name])
+        )
+        matchStats.team[1].players.forEach((player) =>
+          teamSheet2.push([player.pid, player.name])
+        )
+      } else {
+        matchStats.team[1].players.forEach((player) =>
+          teamSheet1.push([player.pid, player.name])
+        )
+        matchStats.team[0].players.forEach((player) =>
+          teamSheet2.push([player.pid, player.name])
+        )
+      }
       // Batting Stats
       // pid, 6s, 4s, balls, runs
       matchStats.batting[0].scores.forEach((player) =>
@@ -266,7 +352,6 @@ const ResponseState = (props) => {
           player['catch'],
         ])
       )
-      console.log(`MOTM: ${matchStats['man-of-the-match'].pid}`)
       // Combining stats
 
       // Batting Stats
@@ -277,6 +362,7 @@ const ResponseState = (props) => {
       // pid, RO, S, Lbw, C
       // Combined stats
       // PlayerID,	Name,	Runout,	Stumped,	Lbw,	Catch,	Dots,	Wickets,	RunsBowling,	Maidens,	Overs,	Sixes,	Fours,	Balls,	RunsBatting,	MOTM,
+
       var index = 0
       teamSheet1.forEach((player) => {
         matchInfo[index].Name = player[1]
@@ -286,7 +372,7 @@ const ResponseState = (props) => {
             matchInfo[index].Sixes = batter[1]
             matchInfo[index].Fours = batter[2]
             matchInfo[index].Balls = batter[3]
-            matchInfo[index].RunsBatted = batter[4]
+            matchInfo[index].RunsBatting = batter[4]
           }
         })
         bowlingStatsTeam1.forEach((bowler) => {
@@ -319,7 +405,7 @@ const ResponseState = (props) => {
             matchInfo[index].Sixes = batter[1]
             matchInfo[index].Fours = batter[2]
             matchInfo[index].Balls = batter[3]
-            matchInfo[index].RunsBatted = batter[4]
+            matchInfo[index].RunsBatting = batter[4]
           }
         })
         bowlingStatsTeam2.forEach((bowler) => {
@@ -339,22 +425,22 @@ const ResponseState = (props) => {
             matchInfo[index].Catch = fielder[4]
           }
         })
-        if (player.pid === matchStats['man-of-the-match'].pid) {
+
+        if (player[0] === matchStats['man-of-the-match'].pid) {
           matchInfo[index].MotM = 1
         }
         index++
       })
+
+      // GOOGLESHEETS CONNECTION
       const res = await Axios.get(`/api/key`)
-      console.log(`RES:${JSON.stringify(res)}`)
       // Authentication for connecting to sheet
       await doc.useServiceAccountAuth({
         client_email: res.data.client_email,
         private_key: res.data.private_key,
       })
-      console.log('Doc accessed')
       // Loads document properties and worksheets
       await doc.loadInfo()
-      console.log('Doc loaded')
       const sheets = doc.sheetsByIndex
 
       // Check if sheet already exists
@@ -370,9 +456,6 @@ const ResponseState = (props) => {
       } else {
         createSheet(matchID, headers, matchInfo)
       }
-
-      console.log(`ST1: ${JSON.stringify(teamSheet1)}`)
-      console.log(`ST2: ${JSON.stringify(matchInfo)}`)
     }
   }
 
@@ -381,6 +464,7 @@ const ResponseState = (props) => {
       value={{
         matches: state.matches,
         match: state.match,
+        matchScore: state.matchScore,
         matchList1: state.matchList1,
         matchList2: state.matchList2,
         loadUpcomingMatches,
