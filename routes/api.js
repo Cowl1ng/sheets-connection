@@ -9,6 +9,8 @@ require('dotenv').config()
 
 router.get('/', async (req, res) => {
   const { apiKey } = req.query
+  console.log(apiKey)
+  console.log(`APIKEY: ${process.env[apiKey]}`)
   try {
     const response = await Axios.get(
       `https://cricapi.com/api/matches?apikey=${process.env[apiKey]}`
@@ -27,7 +29,7 @@ router.get('/', async (req, res) => {
 router.get('/stats', async (req, res) => {
   const { matchID, apiKey } = req.query
   console.log(`MID: ${matchID}`)
-  console.log(process.env[apiKey])
+
   try {
     const response = await Axios.get(
       `https://cricapi.com/api/fantasySummary?apikey=${process.env[apiKey]}&unique_id=${matchID}`

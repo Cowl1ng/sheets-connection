@@ -30,7 +30,7 @@ const MatchList = () => {
                       {match['team-1']} v {match['team-2']}
                     </Card.Title>
                     <Card.Text>
-                      Date: {match.date}
+                      Date: {match.dateTimeGMT}
                       <br />
                       Match ID: {match.unique_id}
                     </Card.Text>
@@ -54,7 +54,7 @@ const MatchList = () => {
                       {match['team-1']} v {match['team-2']}
                     </Card.Title>
                     <Card.Text>
-                      Date: {match.date}
+                      Date: {match.dateTimeGMT}
                       <br />
                       Match ID: {match.unique_id}
                     </Card.Text>
