@@ -66,9 +66,9 @@ const FrontPage = () => {
             >
               <option value='API_KEY_1'>API Key 1</option>
               <option value='API_KEY_2'>API Key 2</option>
-              <option value='API_KEY_2'>API Key 3</option>
-              <option value='API_KEY_2'>API Key 4</option>
-              <option value='API_KEY_2'>API Key 5</option>
+              <option value='API_KEY_3'>API Key 3</option>
+              <option value='API_KEY_4'>API Key 4</option>
+              <option value='API_KEY_5'>API Key 5</option>
             </select>
             <br />
             <button type='submit'>Submit</button>
