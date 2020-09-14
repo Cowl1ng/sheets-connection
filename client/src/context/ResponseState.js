@@ -1,10 +1,6 @@
 import React, { useReducer } from 'react'
 import Axios from 'axios'
 
-import fantasySummary from '../fantasySummary.json'
-import cricketScore from '../cricktScore.json'
-import fantasyAPI from '../fantasyAPI.json'
-
 import ResponseContext from './responseContext'
 import ResponseReducer from './responseReducer'
 
@@ -113,7 +109,9 @@ const ResponseState = (props) => {
   const loadUpcomingMatches = async (apiKey) => {
     const matchList1 = []
     const matchList2 = []
+    console.log(apiKey)
     const res = await Axios.get(`/api?apiKey=${apiKey}`)
+    console.log(`RD; ${JSON.stringify(res.data)}`)
     const matches = res.data.matches.filter(
       (match) => match.type === 'Twenty20'
     )
@@ -158,14 +156,6 @@ const ResponseState = (props) => {
         matchID: matchID,
       },
     })
-    // dispatch({
-    //   type: GET_MATCH_STATS,
-    //   payload: {
-    //     matchStats: fantasyAPI,
-    //     matchScore: cricketScore,
-    //     matchID: matchID,
-    //   },
-    // })
   }
 
   //Ordering match stats

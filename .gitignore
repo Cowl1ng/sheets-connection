@@ -1,6 +1,5 @@
 .env 
 node_modules
-creds-from-google
 /client/build
 
 .DS_Store
