@@ -476,6 +476,7 @@ const ResponseState = (props) => {
       const res = await Axios.get(`/api/key`)
       console.log(`Cleint_EMAIL: ${res.data.client_email}`)
       console.log(`private_key: ${res.data.private_key}`)
+      console.log(`Doc: ${doc}`)
       // Authentication for connecting to sheet
       await doc.useServiceAccountAuth({
         client_email: res.data.client_email,
