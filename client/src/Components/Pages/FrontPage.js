@@ -21,7 +21,7 @@ const FrontPage = () => {
   const formik = useFormik({
     initialValues: {
       matchID: '',
-      apiKey: 'API_KEY_1',
+      apiKey: 'API_KEY_2',
     },
     onSubmit: async (values) => {
       const { matchID, apiKey } = values
