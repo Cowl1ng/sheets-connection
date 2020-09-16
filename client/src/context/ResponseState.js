@@ -378,6 +378,13 @@ const ResponseState = (props) => {
       // Combined stats
       // PlayerID,	Name,	Runout,	Stumped,	Lbw,	Catch,	Dots,	Wickets,	RunsBowling,	Maidens,	Overs,	Sixes,	Fours,	Balls,	RunsBatting,	MOTM,
 
+      console.log(`BaST1: ${JSON.stringify(battingStatsTeam1)}`)
+      console.log(`BaST2: ${JSON.stringify(battingStatsTeam2)}`)
+      console.log(`BoST1: ${JSON.stringify(bowlingStatsTeam1)}`)
+      console.log(`BoST2: ${JSON.stringify(bowlingStatsTeam2)}`)
+      console.log(`FST1: ${JSON.stringify(fieldingStatsTeam1)}`)
+      console.log(`FST1: ${JSON.stringify(fieldingStatsTeam2)}`)
+
       var index = 0
       teamSheet1.forEach((player) => {
         matchInfo[index].Name = player[1]
