@@ -4,8 +4,8 @@ import Axios from 'axios'
 import ResponseContext from './responseContext'
 import ResponseReducer from './responseReducer'
 
-import fantasySummary from '../fantasySummary.json'
-import cricketScore from '../cricketScore.json'
+// import fantasySummary from '../fantasySummary.json'
+// import cricketScore from '../cricketScore.json'
 
 import { GET_MATCH_STATS, MATCHES_LOADED } from './types'
 
@@ -39,6 +39,7 @@ const headers = [
 const updateSheet = async (matchID, headers, matchInfo) => {
   const sheet = doc.sheetsByTitle[matchID]
   try {
+    console.log(`Updating sheet: ${doc}`)
     // Deleteing sheet then remaking it with new info
     await sheet.delete()
     const newSheet = await doc.addSheet({
@@ -53,6 +54,7 @@ const updateSheet = async (matchID, headers, matchInfo) => {
 
 const createSheet = async (matchID, headers, matchInfo) => {
   try {
+    console.log(`New sheet: ${doc}`)
     const newSheet = await doc.addSheet({
       title: `${matchID}`,
       headerValues: headers,
@@ -467,6 +469,8 @@ const ResponseState = (props) => {
         }
         index++
       })
+      console.log(`MI: ${JSON.stringify(matchInfo)}`)
+      console.log(`Head: ${headers}`)
 
       // GOOGLESHEETS CONNECTION
       const res = await Axios.get(`/api/key`)
@@ -477,10 +481,12 @@ const ResponseState = (props) => {
         client_email: res.data.client_email,
         private_key: res.data.private_key,
       })
+      console.log(`Authenticated sheets`)
       // Loads document properties and worksheets
       await doc.loadInfo()
+      console.log(`loaded sheet`)
       const sheets = doc.sheetsByIndex
-
+      console.log(`Loaded sheets by index`)
       // Check if sheet already exists
       var sheetTitles = []
       for (const sheet of sheets) {
@@ -490,8 +496,10 @@ const ResponseState = (props) => {
 
       // If sheet exists update if not create it
       if (sheetExists) {
+        console.log(`Updating sheet`)
         updateSheet(matchID, headers, matchInfo)
       } else {
+        console.log(`Creating sheet`)
         createSheet(matchID, headers, matchInfo)
       }
     }
