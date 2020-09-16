@@ -307,66 +307,78 @@ const ResponseState = (props) => {
       }
       // Batting Stats
       // pid, 6s, 4s, balls, runs
-      matchStats.batting[0].scores.forEach((player) =>
-        battingStatsTeam1.push([
-          player.pid,
-          player['6s'],
-          player['4s'],
-          player['B'],
-          player['R'],
-        ])
-      )
-      matchStats.batting[1].scores.forEach((player) =>
-        battingStatsTeam2.push([
-          player.pid,
-          player['6s'],
-          player['4s'],
-          player['B'],
-          player['R'],
-        ])
-      )
+      if (matchStats.batting[1].scores !== []) {
+        matchStats.batting[0].scores.forEach((player) =>
+          battingStatsTeam1.push([
+            player.pid,
+            player['6s'],
+            player['4s'],
+            player['B'],
+            player['R'],
+          ])
+        )
+      }
+      if (matchStats.batting[1].scores !== []) {
+        matchStats.batting[1].scores.forEach((player) =>
+          battingStatsTeam2.push([
+            player.pid,
+            player['6s'],
+            player['4s'],
+            player['B'],
+            player['R'],
+          ])
+        )
+      }
       // Bowling stats
       // pid, Dots, W, R, M, O
-      matchStats.bowling[1].scores.forEach((player) =>
-        bowlingStatsTeam1.push([
-          player.pid,
-          player['0s'],
-          player.W,
-          player.R,
-          player.M,
-          player.O,
-        ])
-      )
-      matchStats.bowling[0].scores.forEach((player) =>
-        bowlingStatsTeam2.push([
-          player.pid,
-          player['0s'],
-          player.W,
-          player.R,
-          player.M,
-          player.O,
-        ])
-      )
+      if (matchStats.bowling[0].scores !== []) {
+        matchStats.bowling[1].scores.forEach((player) =>
+          bowlingStatsTeam1.push([
+            player.pid,
+            player['0s'],
+            player.W,
+            player.R,
+            player.M,
+            player.O,
+          ])
+        )
+      }
+      if (matchStats.bowling[0].scores !== []) {
+        matchStats.bowling[0].scores.forEach((player) =>
+          bowlingStatsTeam2.push([
+            player.pid,
+            player['0s'],
+            player.W,
+            player.R,
+            player.M,
+            player.O,
+          ])
+        )
+      }
       // Fielding stats
       // pid, RO, S, Lbw, C
-      matchStats.fielding[1].scores.forEach((player) =>
-        fieldingStatsTeam1.push([
-          player.pid,
-          player['runout'],
-          player['stumped'],
-          player['lbw'],
-          player['catch'],
-        ])
-      )
-      matchStats.fielding[0].scores.forEach((player) =>
-        fieldingStatsTeam2.push([
-          player.pid,
-          player['runout'],
-          player['stumped'],
-          player['lbw'],
-          player['catch'],
-        ])
-      )
+      if (matchStats.fielding[1].scores !== []) {
+        matchStats.fielding[1].scores.forEach((player) =>
+          fieldingStatsTeam1.push([
+            player.pid,
+            player['runout'],
+            player['stumped'],
+            player['lbw'],
+            player['catch'],
+          ])
+        )
+      }
+      if (matchStats.fielding[0].scores !== []) {
+        matchStats.fielding[0].scores.forEach((player) =>
+          fieldingStatsTeam2.push([
+            player.pid,
+            player['runout'],
+            player['stumped'],
+            player['lbw'],
+            player['catch'],
+          ])
+        )
+      }
       // Combining stats
 
       // Batting Stats
@@ -383,7 +395,9 @@ const ResponseState = (props) => {
       console.log(`BoST1: ${JSON.stringify(bowlingStatsTeam1)}`)
       console.log(`BoST2: ${JSON.stringify(bowlingStatsTeam2)}`)
       console.log(`FST1: ${JSON.stringify(fieldingStatsTeam1)}`)
-      console.log(`FST1: ${JSON.stringify(fieldingStatsTeam2)}`)
+      console.log(`FST2: ${JSON.stringify(fieldingStatsTeam2)}`)
+      console.log(`TS1: ${JSON.stringify(teamSheet1)}`)
+      console.log(`TS2: ${JSON.stringify(teamSheet2)}`)
 
       var index = 0
       teamSheet1.forEach((player) => {
@@ -419,7 +433,6 @@ const ResponseState = (props) => {
         }
         index++
       })
-      console.log(index)
       teamSheet2.forEach((player) => {
         matchInfo[index].Name = player[1]
         matchInfo[index].PlayerID = player[0]
