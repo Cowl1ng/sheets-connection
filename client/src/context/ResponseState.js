@@ -412,6 +412,7 @@ const ResponseState = (props) => {
         }
         index++
       })
+      console.log(index)
       teamSheet2.forEach((player) => {
         matchInfo[index].Name = player[1]
         matchInfo[index].PlayerID = player[0]
@@ -449,6 +450,8 @@ const ResponseState = (props) => {
 
       // GOOGLESHEETS CONNECTION
       const res = await Axios.get(`/api/key`)
+      console.log(`Cleint_EMAIL: ${res.data.client_email}`)
+      console.log(`private_key: ${res.data.private_key}`)
       // Authentication for connecting to sheet
       await doc.useServiceAccountAuth({
         client_email: res.data.client_email,
