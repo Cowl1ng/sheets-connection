@@ -27,6 +27,7 @@ const FrontPage = () => {
       const { matchID, apiKey } = values
       getMatchStats(matchID, apiKey)
       // alert(JSON.stringify(values, null, 2))
+      console.log(`Submitting matchID: ${matchID}`)
       setLoading(true)
     },
   })

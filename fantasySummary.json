@@ -1,0 +1,492 @@
+{
+  "type": "module",
+  "dateTimeGMT": "2020-09-01T14:00:00.000Z",
+  "data": {
+    "fielding": [
+      {
+        "title": "Fielding for Trinbago Knight Riders Innings (20 overs maximum)",
+        "scores": [
+          {
+            "name": "Carlos Brathwaite",
+            "runout": 0,
+            "stumped": 0,
+            "bowled": 1,
+            "lbw": 0,
+            "catch": 1,
+            "pid": "457249"
+          },
+          {
+            "name": "Glenn Phillips",
+            "runout": 0,
+            "stumped": 0,
+            "bowled": 0,
+            "lbw": 0,
+            "catch": 1,
+            "pid": "823509"
+          },
+          {
+            "name": "Sandeep Lamichhane",
+            "runout": 0,
+            "stumped": 0,
+            "bowled": 0,
+            "lbw": 0,
+            "catch": 1,
+            "pid": "960361"
+          },
+          {
+            "name": "Mujeeb Ur Rahman",
+            "runout": 0,
+            "stumped": 0,
+            "bowled": 0,
+            "lbw": 0,
+            "catch": 1,
+            "pid": "974109"
+          }
+        ]
+      },
+      {
+        "title": "Fielding for Jamaica Tallawahs Innings (target: 185 runs from 20 overs)",
+        "scores": [
+          {
+            "name": "Sunil Narine",
+            "runout": 0,
+            "stumped": 0,
+            "bowled": 1,
+            "lbw": 0,
+            "catch": 2,
+            "pid": "230558"
+          },
+          {
+            "name": "Fawad Ahmed",
+            "runout": 0,
+            "stumped": 0,
+            "bowled": 1,
+            "lbw": 1,
+            "catch": 0,
+            "pid": "240609"
+          },
+          {
+            "name": "Khary Pierre",
+            "runout": 0,
+            "stumped": 0,
+            "bowled": 1,
+            "lbw": 0,
+            "catch": 0,
+            "pid": "581160"
+          },
+          {
+            "name": "Tim Seifert",
+            "runout": 0,
+            "stumped": 0,
+            "bowled": 0,
+            "lbw": 0,
+            "catch": 1,
+            "pid": "625964"
+          }
+        ]
+      }
+    ],
+    "bowling": [
+      {
+        "scores": [
+          {
+            "NB": "0",
+            "WD": "0",
+            "6s": 4,
+            "4s": 3,
+            "0s": 8,
+            "Econ": "12.00",
+            "W": "1",
+            "R": "48",
+            "M": "0",
+            "O": "4",
+            "bowler": "FH Edwards",
+            "pid": "51782"
+          },
+          {
+            "NB": "0",
+            "WD": "1",
+            "6s": 1,
+            "4s": 3,
+            "0s": 13,
+            "Econ": "6.50",
+            "W": "0",
+            "R": "26",
+            "M": "0",
+            "O": "4",
+            "bowler": "Mujeeb Ur Rahman",
+            "pid": "974109"
+          },
+          {
+            "NB": "0",
+            "WD": "2",
+            "6s": 1,
+            "4s": 5,
+            "0s": 11,
+            "Econ": "9.00",
+            "W": "2",
+            "R": "36",
+            "M": "0",
+            "O": "4",
+            "bowler": "CR Brathwaite",
+            "pid": "457249"
+          },
+          {
+            "NB": "2",
+            "WD": "3",
+            "6s": 2,
+            "4s": 4,
+            "0s": 9,
+            "Econ": "12.00",
+            "W": "0",
+            "R": "48",
+            "M": "0",
+            "O": "4",
+            "bowler": "R Powell",
+            "pid": "820351"
+          },
+          {
+            "NB": "0",
+            "WD": "0",
+            "6s": 0,
+            "4s": 2,
+            "0s": 12,
+            "Econ": "5.00",
+            "W": "1",
+            "R": "20",
+            "M": "0",
+            "O": "4",
+            "bowler": "S Lamichhane",
+            "pid": "960361"
+          }
+        ],
+        "title": "Bowling To Trinbago Knight Riders Innings (20 overs maximum)"
+      },
+      {
+        "scores": [
+          {
+            "NB": "0",
+            "WD": "0",
+            "6s": 0,
+            "4s": 2,
+            "0s": 8,
+            "Econ": "6.00",
+            "W": "1",
+            "R": "18",
+            "M": "0",
+            "O": "3",
+            "bowler": "AJ Hosein",
+            "pid": "530812"
+          },
+          {
+            "NB": "0",
+            "WD": "1",
+            "6s": 0,
+            "4s": 2,
+            "0s": 10,
+            "Econ": "6.25",
+            "W": "1",
+            "R": "25",
+            "M": "0",
+            "O": "4",
+            "bowler": "K Pierre",
+            "pid": "581160"
+          },
+          {
+            "NB": "0",
+            "WD": "0",
+            "6s": 1,
+            "4s": 2,
+            "0s": 14,
+            "Econ": "5.75",
+            "W": "1",
+            "R": "23",
+            "M": "0",
+            "O": "4",
+            "bowler": "SP Narine",
+            "pid": "230558"
+          },
+          {
+            "NB": "0",
+            "WD": "0",
+            "6s": 2,
+            "4s": 0,
+            "0s": 8,
+            "Econ": "7.00",
+            "W": "2",
+            "R": "21",
+            "M": "0",
+            "O": "3",
+            "bowler": "Fawad Ahmed",
+            "pid": "240609"
+          },
+          {
+            "NB": "0",
+            "WD": "2",
+            "6s": 0,
+            "4s": 5,
+            "0s": 5,
+            "Econ": "9.25",
+            "W": "1",
+            "R": "37",
+            "M": "0",
+            "O": "4",
+            "bowler": "DJ Bravo",
+            "pid": "51439"
+          },
+          {
+            "NB": "0",
+            "WD": "1",
+            "6s": 2,
+            "4s": 2,
+            "0s": 1,
+            "Econ": "22.00",
+            "W": "0",
+            "R": "22",
+            "M": "0",
+            "O": "1",
+            "bowler": "JNT Seales",
+            "pid": "1199304"
+          },
+          {
+            "NB": "0",
+            "WD": "0",
+            "6s": 2,
+            "4s": 1,
+            "0s": 1,
+            "Econ": "18.00",
+            "W": "0",
+            "R": "18",
+            "M": "0",
+            "O": "1",
+            "bowler": "KA Pollard",
+            "pid": "230559"
+          }
+        ],
+        "title": "Bowling To Jamaica Tallawahs Innings (target: 185 runs from 20 overs)"
+      }
+    ],
+    "batting": [
+      {
+        "scores": [
+          {
+            "dismissal-by": { "name": "Mujeeb Ur Rahman", "pid": "974109" },
+            "dismissal": "catch",
+            "SR": 89,
+            "6s": 2,
+            "4s": 0,
+            "M": 0,
+            "B": 28,
+            "R": 25,
+            "dismissal-info": "c Mujeeb Ur Rahman b Lamichhane",
+            "batsman": "LMP Simmons",
+            "pid": "53116"
+          },
+          {
+            "dismissal-by": { "name": "Glenn Phillips", "pid": "823509" },
+            "dismissal": "catch",
+            "SR": 263,
+            "6s": 1,
+            "4s": 5,
+            "M": 0,
+            "B": 11,
+            "R": 29,
+            "dismissal-info": "c  Phillips b Brathwaite",
+            "batsman": "SP Narine",
+            "pid": "230558"
+          },
+          {
+            "dismissal-by": { "name": "Carlos Brathwaite", "pid": "457249" },
+            "dismissal": "catch & bowled",
+            "SR": 120,
+            "6s": 1,
+            "4s": 10,
+            "M": 0,
+            "B": 54,
+            "R": 65,
+            "dismissal-info": "c & b Brathwaite",
+            "batsman": "C Munro",
+            "pid": "232359"
+          },
+          {
+            "dismissal-by": { "name": "Sandeep Lamichhane", "pid": "960361" },
+            "dismissal": "catch",
+            "SR": 138,
+            "6s": 1,
+            "4s": 1,
+            "M": 0,
+            "B": 13,
+            "R": 18,
+            "dismissal-info": "c Lamichhane b Edwards",
+            "batsman": "TL Seifert  ",
+            "pid": "625964"
+          },
+          {
+            "SR": 206,
+            "6s": 3,
+            "4s": 1,
+            "M": 0,
+            "B": 16,
+            "R": 33,
+            "dismissal-info": "",
+            "batsman": "KA Pollard (c)",
+            "pid": "230559"
+          }
+        ],
+        "title": "Trinbago Knight Riders Innings (20 overs maximum)"
+      },
+      {
+        "scores": [
+          {
+            "dismissal-by": { "name": "Sunil Narine", "pid": "230558" },
+            "dismissal": "catch",
+            "SR": 0,
+            "6s": 0,
+            "4s": 0,
+            "M": 0,
+            "B": 1,
+            "R": 0,
+            "dismissal-info": "c Narine b Hosein",
+            "batsman": "CAK Walton",
+            "pid": "315586"
+          },
+          {
+            "dismissal-by": { "name": "Tim Seifert", "pid": "625964" },
+            "dismissal": "catch",
+            "SR": 132,
+            "6s": 2,
+            "4s": 1,
+            "M": 0,
+            "B": 31,
+            "R": 41,
+            "dismissal-info": "c  Seifert b DJ Bravo",
+            "batsman": "GD Phillips  ",
+            "pid": "823509"
+          },
+          {
+            "dismissal-by": { "name": "Khary Pierre", "pid": "581160" },
+            "dismissal": "bowled",
+            "SR": 133,
+            "6s": 0,
+            "4s": 3,
+            "M": 0,
+            "B": 9,
+            "R": 12,
+            "dismissal-info": "b Pierre",
+            "batsman": "J Blackwood",
+            "pid": "431909"
+          },
+          {
+            "dismissal-by": { "name": "Fawad Ahmed", "pid": "240609" },
+            "dismissal": "lbw",
+            "SR": 86,
+            "6s": 0,
+            "4s": 2,
+            "M": 0,
+            "B": 30,
+            "R": 26,
+            "dismissal-info": "lbw b Fawad Ahmed",
+            "batsman": "NE Bonner",
+            "pid": "314650"
+          },
+          {
+            "dismissal-by": { "name": "Fawad Ahmed", "pid": "240609" },
+            "dismissal": "bowled",
+            "SR": 33,
+            "6s": 0,
+            "4s": 0,
+            "M": 0,
+            "B": 6,
+            "R": 2,
+            "dismissal-info": "b Fawad Ahmed",
+            "batsman": "R Powell (c)",
+            "pid": "820351"
+          },
+          {
+            "SR": 217,
+            "6s": 4,
+            "4s": 5,
+            "M": 0,
+            "B": 23,
+            "R": 50,
+            "dismissal-info": "",
+            "batsman": "AD Russell",
+            "pid": "276298"
+          },
+          {
+            "dismissal-by": { "name": "Sunil Narine", "pid": "230558" },
+            "dismissal": "catch & bowled",
+            "SR": 175,
+            "6s": 0,
+            "4s": 1,
+            "M": 0,
+            "B": 4,
+            "R": 7,
+            "dismissal-info": "c & b Narine",
+            "batsman": "Asif Ali",
+            "pid": "494230"
+          },
+          {
+            "SR": 131,
+            "6s": 1,
+            "4s": 2,
+            "M": 0,
+            "B": 16,
+            "R": 21,
+            "dismissal-info": "",
+            "batsman": "CR Brathwaite",
+            "pid": "457249"
+          }
+        ],
+        "title": "Jamaica Tallawahs Innings (target: 185 runs from 20 overs)"
+      }
+    ],
+    "team": [
+      {
+        "players": [
+          { "name": "Lendl Simmons", "pid": "53116" },
+          { "name": "Sunil Narine", "pid": "230558" },
+          { "name": "Colin Munro", "pid": "232359" },
+          { "name": "Tim Seifert", "pid": "625964" },
+          { "name": "Kieron Pollard", "pid": "230559" },
+          { "name": "Darren Bravo", "pid": "277472" },
+          { "name": "Akeal Hosein", "pid": "530812" },
+          { "name": "Dwayne Bravo", "pid": "51439" },
+          { "name": "Khary Pierre", "pid": "581160" },
+          { "name": "Jayden Seales", "pid": "1199304" },
+          { "name": "Fawad Ahmed", "pid": "240609" }
+        ],
+        "name": "Trinbago Knight Riders"
+      },
+      {
+        "players": [
+          { "name": "Chadwick Walton", "pid": "315586" },
+          { "name": "Glenn Phillips", "pid": "823509" },
+          { "name": "Jermaine Blackwood", "pid": "431909" },
+          { "name": "Nkrumah Bonner", "pid": "314650" },
+          { "name": "Rovman Powell", "pid": "820351" },
+          { "name": "Andre Russell", "pid": "276298" },
+          { "name": "Asif Ali", "pid": "494230" },
+          { "name": "Carlos Brathwaite", "pid": "457249" },
+          { "name": "Mujeeb Ur Rahman", "pid": "974109" },
+          { "name": "Sandeep Lamichhane", "pid": "960361" },
+          { "name": "Fidel Edwards", "pid": "51782" }
+        ],
+        "name": "Jamaica Tallawahs"
+      }
+    ],
+    "man-of-the-match": { "name": "Colin Munro", "pid": "232359" },
+    "toss_winner_team": "Jamaica Tallawahs",
+    "winner_team": "Trinbago Knight Riders",
+    "matchStarted": true
+  },
+  "cache3": true,
+  "creditsLeft": 204,
+  "v": "1",
+  "ttl": 7,
+  "provider": {
+    "source": "Various",
+    "url": "https://cricapi.com/",
+    "pubDate": "2020-09-01T20:57:17.794Z"
+  }
+}

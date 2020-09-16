@@ -20,6 +20,26 @@ router.get('/', async (req, res) => {
     console.error(error.message)
     res.status(500).send('Server Error')
   }
+
+  // Axios({
+  //   method: 'GET',
+  //   url: 'https://dev132-cricket-live-scores-v1.p.rapidapi.com/matchseries.php',
+  //   headers: {
+  //     'content-type': 'application/octet-stream',
+  //     'x-rapidapi-host': 'dev132-cricket-live-scores-v1.p.rapidapi.com',
+  //     'x-rapidapi-key': 'a1a12df252msh299c4c412fcff8bp11e975jsnb50b0107dd20',
+  //     useQueryString: true,
+  //   },
+  //   params: {
+  //     seriesid: '2514',
+  //   },
+  // })
+  //   .then((response) => {
+  //     res.json(response.data)
+  //   })
+  //   .catch((error) => {
+  //     console.log(error)
+  //   })
 })
 
 // @route     GET api/stats

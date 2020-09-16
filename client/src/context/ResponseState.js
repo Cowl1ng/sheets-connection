@@ -4,6 +4,9 @@ import Axios from 'axios'
 import ResponseContext from './responseContext'
 import ResponseReducer from './responseReducer'
 
+import fantasySummary from '../fantasySummary.json'
+import cricketScore from '../cricketScore.json'
+
 import { GET_MATCH_STATS, MATCHES_LOADED } from './types'
 
 const { GoogleSpreadsheet } = require('google-spreadsheet')
@@ -111,10 +114,10 @@ const ResponseState = (props) => {
     const matchList2 = []
     console.log(apiKey)
     const res = await Axios.get(`/api?apiKey=${apiKey}`)
-    console.log(`RD; ${JSON.stringify(res.data)}`)
     const matches = res.data.matches.filter(
       (match) => match.type === 'Twenty20'
     )
+    // const matches = res.data.matchList.matches
     matches.forEach(
       (match) =>
         (match.dateTimeGMT = match.dateTimeGMT
@@ -127,7 +130,8 @@ const ResponseState = (props) => {
       (match) => Date.parse(match.dateTimeGMT) > currentDate
     )
     console.log(`DM: ${JSON.stringify(datedMatches)}`)
-    const nextMatches = res.data.matches.slice(0, 10)
+    // const sliceNumber = datedMatches.length - 10
+    const nextMatches = datedMatches.slice(0, 10)
     for (var i = 0; i < nextMatches.length; i++) {
       if (i % 2 === 0) {
         matchList1.push(nextMatches[i])
@@ -148,6 +152,7 @@ const ResponseState = (props) => {
     const res = await Axios.get(
       `/api/stats?apiKey=${apiKey}&matchID=${matchID}`
     )
+    console.log(`RES: ${JSON.stringify(res.data)}`)
     dispatch({
       type: GET_MATCH_STATS,
       payload: {
@@ -155,6 +160,11 @@ const ResponseState = (props) => {
         matchScore: res.data.matchScore,
         matchID: matchID,
       },
+      // payload: {
+      //   matchStats: res,
+      //   matchScore: res2,
+      //   matchID: matchID,
+      // },
     })
   }
 
