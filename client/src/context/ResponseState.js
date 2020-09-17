@@ -478,10 +478,7 @@ const ResponseState = (props) => {
       console.log(`private_key: ${res.data.private_key}`)
       console.log(`Doc: ${JSON.stringify(doc)}`)
       // Authentication for connecting to sheet
-      await doc.useServiceAccountAuth({
-        client_email: res.data.client_email,
-        private_key: res.data.private_key,
-      })
+      await doc.useServiceAccountAuth(require('../creds-from-google.json'))
       console.log(`Authenticated sheets`)
       // Loads document properties and worksheets
       await doc.loadInfo()
@@ -506,105 +503,6 @@ const ResponseState = (props) => {
     }
   }
 
-  const sheets = async (matchID) => {
-    console.log(`MID:${matchID}`)
-
-    const player1 = new playerInfo(matchID, 'P1')
-    const player2 = new playerInfo(matchID, 'P2')
-    const player3 = new playerInfo(matchID, 'P3')
-    const player4 = new playerInfo(matchID, 'P4')
-    const player5 = new playerInfo(matchID, 'P5')
-    const player6 = new playerInfo(matchID, 'P6')
-    const player7 = new playerInfo(matchID, 'P7')
-    const player8 = new playerInfo(matchID, 'P8')
-    const player9 = new playerInfo(matchID, 'P9')
-    const player10 = new playerInfo(matchID, 'P10')
-    const player11 = new playerInfo(matchID, 'P11')
-    const player12 = new playerInfo(matchID, 'P12')
-    const player13 = new playerInfo(matchID, 'P13')
-    const player14 = new playerInfo(matchID, 'P14')
-    const player15 = new playerInfo(matchID, 'P15')
-    const player16 = new playerInfo(matchID, 'P16')
-    const player17 = new playerInfo(matchID, 'P17')
-    const player18 = new playerInfo(matchID, 'P18')
-    const player19 = new playerInfo(matchID, 'P19')
-    const player20 = new playerInfo(matchID, 'P20')
-    const player21 = new playerInfo(matchID, 'P21')
-    const player22 = new playerInfo(matchID, 'P22')
-
-    const team1 = new TeamInfo(matchID, 'Team-1')
-    const team2 = new TeamInfo(matchID, 'Team-2')
-    const teamHeadings = {
-      Name: 'Team Names',
-      Runout: 'Score',
-      Stumped: 'Wickets',
-      Lbw: 'Overs Faced',
-    }
-    const blankHeadings = {}
-
-    const matchInfo = [
-      player1,
-      player2,
-      player3,
-      player4,
-      player5,
-      player6,
-      player7,
-      player8,
-      player9,
-      player10,
-      player11,
-      player12,
-      player13,
-      player14,
-      player15,
-      player16,
-      player17,
-      player18,
-      player19,
-      player20,
-      player21,
-      player22,
-      blankHeadings,
-      teamHeadings,
-      team1,
-      team2,
-    ]
-
-    // GOOGLESHEETS CONNECTION
-    const res = await Axios.get(`/api/key`)
-    console.log(`Cleint_EMAIL: ${res.data.client_email}`)
-    console.log(`private_key: ${res.data.private_key}`)
-    console.log(`Doc: ${JSON.stringify(doc)}`)
-    // Authentication for connecting to sheet
-    // await doc.useServiceAccountAuth({
-    //   client_email: res.data.client_email,
-    //   private_key: res.data.private_key,
-    // })
-    await doc.useServiceAccountAuth(require('../creds-from-google.json'))
-    console.log(`Authenticated sheets`)
-    // Loads document properties and worksheets
-    await doc.loadInfo()
-    console.log(`loaded sheet`)
-    const sheets = doc.sheetsByIndex
-    console.log(`Loaded sheets by index`)
-    // Check if sheet already exists
-    var sheetTitles = []
-    for (const sheet of sheets) {
-      sheetTitles.push(sheet.title)
-    }
-    const sheetExists = sheetTitles.includes(`${matchID}`)
-
-    // If sheet exists update if not create it
-    if (sheetExists) {
-      console.log(`Updating sheet`)
-      updateSheet(matchID, headers, matchInfo)
-    } else {
-      console.log(`Creating sheet`)
-      createSheet(matchID, headers, matchInfo)
-    }
-  }
-
   return (
     <ResponseContext.Provider
       value={{
@@ -616,7 +514,6 @@ const ResponseState = (props) => {
         loadUpcomingMatches,
         getMatchStats,
         orderStats,
-        sheets,
       }}
     >
       {props.children}
