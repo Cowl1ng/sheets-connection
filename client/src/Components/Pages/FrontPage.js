@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
 import MatchList from '../MatchList.js'
 
@@ -13,15 +14,22 @@ require('dotenv').config()
 
 const FrontPage = () => {
   const responseContext = useContext(ResponseContext)
-  const { getMatchStats, orderStats, match, matchScore } = responseContext
+  const {
+    getMatchStats,
+    orderStats,
+    match,
+    matchScore,
+    sheets,
+  } = responseContext
 
   const [loading, setLoading] = useState(false)
   const [loaded, setLoaded] = useState(false)
+  const [ID, setID] = useState(10)
 
   const formik = useFormik({
     initialValues: {
       matchID: '',
-      apiKey: 'API_KEY_2',
+      apiKey: 'API_KEY_1',
     },
     onSubmit: async (values) => {
       const { matchID, apiKey } = values
@@ -31,6 +39,10 @@ const FrontPage = () => {
       setLoading(true)
     },
   })
+  const handleClick = () => {
+    console.log(`Clicked`)
+    sheets(ID)
+  }
 
   useEffect(() => {
     orderStats()
@@ -44,9 +56,7 @@ const FrontPage = () => {
   return (
     <Container fluid>
       <Row className='justify-content-md-center mt-3'>
-        <Col lg={6}>
-          <MatchList />
-        </Col>
+        <Col lg={6}>{/* <MatchList /> */}</Col>
         <Col lg={3}>
           <form onSubmit={formik.handleSubmit}>
             <label htmlFor='matchID'>Match ID</label>
@@ -87,6 +97,9 @@ const FrontPage = () => {
             <h1>Not loaded</h1>
           )}
         </Col>
+      </Row>
+      <Row>
+        <Button onClick={handleClick}>Send sheet</Button>
       </Row>
     </Container>
   )
