@@ -13,7 +13,7 @@ const MatchList = () => {
   const { loadUpcomingMatches, matchList1, matchList2 } = responseContext
 
   useEffect(() => {
-    loadUpcomingMatches('API_KEY_2')
+    loadUpcomingMatches('API_KEY_5')
     console.log('loading matches')
   }, [])
 
