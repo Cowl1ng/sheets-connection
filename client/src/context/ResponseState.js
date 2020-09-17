@@ -54,7 +54,7 @@ const updateSheet = async (matchID, headers, matchInfo) => {
 
 const createSheet = async (matchID, headers, matchInfo) => {
   try {
-    console.log(`New sheet: ${JSON.stringify(doc)}`)
+    console.log(`New sheet: ${JSON.stringify(doc.spreadsheetId)}`)
     const newSheet = await doc.addSheet({
       title: `${matchID}`,
       headerValues: headers,
@@ -577,10 +577,11 @@ const ResponseState = (props) => {
     console.log(`private_key: ${res.data.private_key}`)
     console.log(`Doc: ${JSON.stringify(doc)}`)
     // Authentication for connecting to sheet
-    await doc.useServiceAccountAuth({
-      client_email: res.data.client_email,
-      private_key: res.data.private_key,
-    })
+    // await doc.useServiceAccountAuth({
+    //   client_email: res.data.client_email,
+    //   private_key: res.data.private_key,
+    // })
+    await doc.useServiceAccountAuth(require('../creds-from-google.json'))
     console.log(`Authenticated sheets`)
     // Loads document properties and worksheets
     await doc.loadInfo()
