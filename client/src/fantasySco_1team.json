@@ -1,0 +1,16 @@
+{
+    "stat": "Syd Sixers chose to field. CRR: 7.53",
+    "score": "Hobart Hurricanes 96/4 v Sydney Sixers 3/1 *",
+    "description": "Hobart Hurricanes 96/4 v Sydney Sixers 3/1 *",
+    "matchStarted": true,
+    "team-1": "Hobart Hurricanes",
+    "team-2": "Sydney Sixers",
+    "v": "1",
+    "ttl": 1,
+    "provider": {
+        "source": "Various",
+        "url": "https://cricapi.com/",
+        "pubDate": "2020-12-10T09:27:05.386Z"
+    },
+    "creditsLeft": 236
+}
