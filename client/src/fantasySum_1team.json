@@ -1,0 +1,491 @@
+{
+    "dateTimeGMT": "2020-12-10T08:15:00.000Z",
+    "data": {
+        "fielding": [
+            {
+                "title": "Fielding for Hobart Hurricanes Innings (20 overs maximum)Sydney Sixers Team",
+                "scores": [
+                    {
+                        "name": "Jordan Silk",
+                        "runout": 0,
+                        "stumped": 0,
+                        "bowled": 0,
+                        "lbw": 0,
+                        "catch": 1,
+                        "pid": "437669"
+                    },
+                    {
+                        "name": "Gurinder Sandhu",
+                        "runout": 0,
+                        "stumped": 0,
+                        "bowled": 0,
+                        "lbw": 0,
+                        "catch": 1,
+                        "pid": "499660"
+                    },
+                    {
+                        "name": "Benjamin Manenti",
+                        "runout": 0,
+                        "stumped": 0,
+                        "bowled": 1,
+                        "lbw": 0,
+                        "catch": 1,
+                        "pid": "1065115"
+                    },
+                    {
+                        "name": "Jack Edwards",
+                        "runout": 0,
+                        "stumped": 0,
+                        "bowled": 0,
+                        "lbw": 0,
+                        "catch": 1,
+                        "pid": "1088610"
+                    },
+                    {
+                        "name": "Josh Philippe",
+                        "runout": 0,
+                        "stumped": 1,
+                        "bowled": 0,
+                        "lbw": 0,
+                        "catch": 0,
+                        "pid": "1124282"
+                    }
+                ]
+            }
+        ],
+        "bowling": [
+            {
+                "scores": [
+                    {
+                        "NB": "0",
+                        "WD": "0",
+                        "6s": 0,
+                        "4s": 3,
+                        "0s": 11,
+                        "Econ": "6.50",
+                        "W": "1",
+                        "R": "26",
+                        "M": "0",
+                        "O": "4",
+                        "bowler": "BAD Manenti",
+                        "pid": "1065115"
+                    },
+                    {
+                        "NB": "0",
+                        "WD": "0",
+                        "6s": 0,
+                        "4s": 1,
+                        "0s": 9,
+                        "Econ": "3.00",
+                        "W": "1",
+                        "R": "6",
+                        "M": "0",
+                        "O": "2",
+                        "bowler": "BJ Dwarshuis",
+                        "pid": "679567"
+                    },
+                    {
+                        "NB": "0",
+                        "WD": "0",
+                        "6s": 1,
+                        "4s": 2,
+                        "0s": 3,
+                        "Econ": "10.00",
+                        "W": "0",
+                        "R": "20",
+                        "M": "0",
+                        "O": "2",
+                        "bowler": "GS Sandhu",
+                        "pid": "499660"
+                    },
+                    {
+                        "NB": "0",
+                        "WD": "0",
+                        "6s": 0,
+                        "4s": 2,
+                        "0s": 4,
+                        "Econ": "8.00",
+                        "W": "0",
+                        "R": "16",
+                        "M": "0",
+                        "O": "2",
+                        "bowler": "CR Brathwaite",
+                        "pid": "457249"
+                    },
+                    {
+                        "NB": "0",
+                        "WD": "0",
+                        "6s": 1,
+                        "4s": 5,
+                        "0s": 6,
+                        "Econ": "10.00",
+                        "W": "1",
+                        "R": "40",
+                        "M": "0",
+                        "O": "4",
+                        "bowler": "SNJ O'Keefe",
+                        "pid": "7069"
+                    },
+                    {
+                        "NB": "0",
+                        "WD": "1",
+                        "6s": 0,
+                        "4s": 1,
+                        "0s": 6,
+                        "Econ": "5.45",
+                        "W": "2",
+                        "R": "10",
+                        "M": "0",
+                        "O": "1.5",
+                        "bowler": "DT Christian",
+                        "pid": "4864"
+                    },
+                    {
+                        "NB": null,
+                        "WD": null,
+                        "6s": 0,
+                        "4s": 0,
+                        "0s": 0,
+                        "Econ": 0,
+                        "O": "Wicketkeeper",
+                        "bowler": "Josh Philippe   ",
+                        "pid": "1124282"
+                    },
+                    {
+                        "NB": null,
+                        "WD": null,
+                        "6s": 0,
+                        "4s": 0,
+                        "0s": 0,
+                        "Econ": 0,
+                        "O": "Batsman",
+                        "bowler": "Jack Edwards  ",
+                        "pid": "1088610"
+                    },
+                    {
+                        "NB": null,
+                        "WD": null,
+                        "6s": 0,
+                        "4s": 0,
+                        "0s": 0,
+                        "Econ": 0,
+                        "O": "Batsman",
+                        "bowler": "James Vince  ",
+                        "pid": "296597"
+                    },
+                    {
+                        "NB": null,
+                        "WD": null,
+                        "6s": 0,
+                        "4s": 0,
+                        "0s": 0,
+                        "Econ": 0,
+                        "O": "Batsman",
+                        "bowler": "Daniel Hughes (c) ",
+                        "pid": "571761"
+                    },
+                    {
+                        "NB": null,
+                        "WD": null,
+                        "6s": 0,
+                        "4s": 0,
+                        "0s": 0,
+                        "Econ": 0,
+                        "O": "Batsman",
+                        "bowler": "Jordan Silk  ",
+                        "pid": "437669"
+                    },
+                    {
+                        "NB": null,
+                        "WD": null,
+                        "6s": 0,
+                        "4s": 0,
+                        "0s": 0,
+                        "Econ": 0,
+                        "O": "Allrounder",
+                        "bowler": "Daniel Christian  ",
+                        "pid": "4864"
+                    },
+                    {
+                        "NB": null,
+                        "WD": null,
+                        "6s": 0,
+                        "4s": 0,
+                        "0s": 0,
+                        "Econ": 0,
+                        "O": "Allrounder",
+                        "bowler": "Carlos Brathwaite  ",
+                        "pid": "457249"
+                    },
+                    {
+                        "NB": null,
+                        "WD": null,
+                        "6s": 0,
+                        "4s": 0,
+                        "0s": 0,
+                        "Econ": 0,
+                        "O": "Bowler",
+                        "bowler": "Ben Dwarshuis  ",
+                        "pid": "679567"
+                    },
+                    {
+                        "NB": null,
+                        "WD": null,
+                        "6s": 0,
+                        "4s": 0,
+                        "0s": 0,
+                        "Econ": 0,
+                        "O": "Allrounder",
+                        "bowler": "Steve O'Keefe  ",
+                        "pid": "7069"
+                    },
+                    {
+                        "NB": null,
+                        "WD": null,
+                        "6s": 0,
+                        "4s": 0,
+                        "0s": 0,
+                        "Econ": 0,
+                        "O": "",
+                        "bowler": "Benjamin Manenti  ",
+                        "pid": "1065115"
+                    },
+                    {
+                        "NB": null,
+                        "WD": null,
+                        "6s": 0,
+                        "4s": 0,
+                        "0s": 0,
+                        "Econ": 0,
+                        "O": "Bowler",
+                        "bowler": "Gurinder Sandhu  ",
+                        "pid": "499660"
+                    }
+                ],
+                "title": "Bowling To Hobart Hurricanes Innings (20 overs maximum)Sydney Sixers Team"
+            }
+        ],
+        "batting": [
+            {
+                "scores": [
+                    {
+                        "dismissal-by": {
+                            "name": "Benjamin Manenti",
+                            "pid": "1065115"
+                        },
+                        "dismissal": "catch & bowled",
+                        "SR": 0,
+                        "6s": 0,
+                        "4s": 0,
+                        "M": 0,
+                        "B": 2,
+                        "R": 0,
+                        "dismissal-info": "c & b Manenti",
+                        "batsman": "WG Jacks",
+                        "pid": "897549"
+                    },
+                    {
+                        "dismissal-by": {
+                            "name": "Jack Edwards",
+                            "pid": "1088610"
+                        },
+                        "dismissal": "catch",
+                        "SR": 0,
+                        "6s": 0,
+                        "4s": 0,
+                        "M": 0,
+                        "B": 1,
+                        "R": 0,
+                        "dismissal-info": "c Edwards b Dwarshuis",
+                        "batsman": "DJM Short",
+                        "pid": "308798"
+                    },
+                    {
+                        "dismissal-by": {
+                            "name": "Gurinder Sandhu",
+                            "pid": "499660"
+                        },
+                        "dismissal": "catch",
+                        "SR": 130,
+                        "6s": 1,
+                        "4s": 7,
+                        "M": 0,
+                        "B": 42,
+                        "R": 55,
+                        "dismissal-info": "c Sandhu b Christian",
+                        "batsman": "CA Ingram",
+                        "pid": "45705"
+                    },
+                    {
+                        "dismissal-by": {
+                            "name": "Josh Philippe",
+                            "pid": "1124282"
+                        },
+                        "dismissal": "stumped",
+                        "SR": 120,
+                        "6s": 1,
+                        "4s": 2,
+                        "M": 0,
+                        "B": 20,
+                        "R": 24,
+                        "dismissal-info": "st  Philippe b O'Keefe",
+                        "batsman": "PSP Handscomb (c)  ",
+                        "pid": "334337"
+                    },
+                    {
+                        "dismissal-by": {
+                            "name": "Jordan Silk",
+                            "pid": "437669"
+                        },
+                        "dismissal": "catch",
+                        "SR": 80,
+                        "6s": 0,
+                        "4s": 0,
+                        "M": 0,
+                        "B": 10,
+                        "R": 8,
+                        "dismissal-info": "c Silk b Christian",
+                        "batsman": "M Wright",
+                        "pid": "816627"
+                    },
+                    {
+                        "SR": 150,
+                        "6s": 0,
+                        "4s": 5,
+                        "M": 0,
+                        "B": 20,
+                        "R": 30,
+                        "dismissal-info": "",
+                        "batsman": "TH David",
+                        "pid": "892749"
+                    },
+                    {
+                        "SR": 0,
+                        "6s": 0,
+                        "4s": 0,
+                        "M": 0,
+                        "B": 0,
+                        "R": 0,
+                        "dismissal-info": "",
+                        "batsman": "JP Faulkner",
+                        "pid": "270484"
+                    }
+                ],
+                "title": "Hobart Hurricanes Innings (20 overs maximum)Sydney Sixers Team"
+            }
+        ],
+        "team": [
+            {
+                "players": [
+                    {
+                        "name": "Will Jacks",
+                        "pid": "897549"
+                    },
+                    {
+                        "name": "D'Arcy Short",
+                        "pid": "308798"
+                    },
+                    {
+                        "name": "Colin Ingram",
+                        "pid": "45705"
+                    },
+                    {
+                        "name": "Peter Handscomb",
+                        "pid": "334337"
+                    },
+                    {
+                        "name": "Macalister Wright",
+                        "pid": "816627"
+                    },
+                    {
+                        "name": "Tim David",
+                        "pid": "892749"
+                    },
+                    {
+                        "name": "James Faulkner",
+                        "pid": "270484"
+                    },
+                    {
+                        "name": "Johan Botha",
+                        "pid": "44149"
+                    },
+                    {
+                        "name": "Nathan Ellis",
+                        "pid": "826915"
+                    },
+                    {
+                        "name": "Scott Boland",
+                        "pid": "446548"
+                    },
+                    {
+                        "name": "Riley Meredith",
+                        "pid": "961713"
+                    }
+                ],
+                "name": "Hobart Hurricanes"
+            },
+            {
+                "players": [
+                    {
+                        "name": "Josh Philippe",
+                        "pid": "1124282"
+                    },
+                    {
+                        "name": "Jack Edwards",
+                        "pid": "1088610"
+                    },
+                    {
+                        "name": "James Vince",
+                        "pid": "296597"
+                    },
+                    {
+                        "name": "Daniel Hughes",
+                        "pid": "571761"
+                    },
+                    {
+                        "name": "Jordan Silk",
+                        "pid": "437669"
+                    },
+                    {
+                        "name": "Daniel Christian",
+                        "pid": "4864"
+                    },
+                    {
+                        "name": "Carlos Brathwaite",
+                        "pid": "457249"
+                    },
+                    {
+                        "name": "Ben Dwarshuis",
+                        "pid": "679567"
+                    },
+                    {
+                        "name": "Steve O'Keefe",
+                        "pid": "7069"
+                    },
+                    {
+                        "name": "Benjamin Manenti",
+                        "pid": "1065115"
+                    },
+                    {
+                        "name": "Gurinder Sandhu",
+                        "pid": "499660"
+                    }
+                ],
+                "name": "Sydney Sixers"
+            }
+        ],
+        "man-of-the-match": "",
+        "toss_winner_team": "Sydney Sixers",
+        "matchStarted": true
+    },
+    "type": "Twenty20",
+    "cache3": true,
+    "creditsLeft": 238,
+    "v": "1",
+    "ttl": 1,
+    "provider": {
+        "source": "Various",
+        "url": "https://cricapi.com/",
+        "pubDate": "2020-12-10T09:25:25.057Z"
+    }
+}

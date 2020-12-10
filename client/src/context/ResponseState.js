@@ -4,15 +4,16 @@ import Axios from 'axios'
 import ResponseContext from './responseContext'
 import ResponseReducer from './responseReducer'
 
-// import fantasySummary from '../fantasySummary.json'
-// import cricketScore from '../cricketScore.json'
+import fantasySummary from '../fantasySummary.json'
+import fantasySummary_1team from '../fantasySum_1team.json'
+import cricketScore from '../fantasySco_1team.json'
 
 import { GET_MATCH_STATS, MATCHES_LOADED } from './types'
 
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 // Spreadsheet key is the long id in the sheets URL
 const doc = new GoogleSpreadsheet(
-  '17oti2EzpzhSPktutTukCRcJyhOKfC7w368OQm5r1Rk0'
+  '1gHTeqFudAPL7GOKToSVTyuwHqdkXBQOl1NzlYCVnk3c'
 )
 
 // Headers for spreadsheet
@@ -131,7 +132,6 @@ const ResponseState = (props) => {
     const datedMatches = matches.filter(
       (match) => Date.parse(match.dateTimeGMT) > currentDate
     )
-    console.log(`DM: ${JSON.stringify(datedMatches)}`)
     // const sliceNumber = datedMatches.length - 10
     const nextMatches = datedMatches.slice(0, 10)
     for (var i = 0; i < nextMatches.length; i++) {
@@ -154,7 +154,10 @@ const ResponseState = (props) => {
     const res = await Axios.get(
       `/api/stats?apiKey=${apiKey}&matchID=${matchID}`
     )
-    console.log(`RES: ${JSON.stringify(res.data)}`)
+    // // Testing
+    // const res = fantasySummary_1team
+    // const res2 = cricketScore
+    // console.log(`RES: ${JSON.stringify(res.data)}`)
     dispatch({
       type: GET_MATCH_STATS,
       payload: {
@@ -162,6 +165,7 @@ const ResponseState = (props) => {
         matchScore: res.data.matchScore,
         matchID: matchID,
       },
+      // // Payload for testing
       // payload: {
       //   matchStats: res,
       //   matchScore: res2,
@@ -177,6 +181,8 @@ const ResponseState = (props) => {
       const matchStats = state.match.data
       const matchScore = state.matchScore
 
+      console.log(`MS: ${JSON.stringify(matchStats)}`)
+      
       const teamSheet1 = []
       // pid, name
       const battingStatsTeam1 = []
@@ -258,7 +264,9 @@ const ResponseState = (props) => {
       team1.Name = matchScore['team-1']
       team2.Name = matchScore['team-2']
 
-      // Need to check for team name in string then checkk for scores
+      // Needs to be commennted as breaks if score nnot availabble for both teams
+
+      // Need to check for team name in string then check for scores
       const splitScore = matchScore.score.split(' v ')
       const team1Score = splitScore[0]
       const team2Score = splitScore[1]
@@ -269,13 +277,15 @@ const ResponseState = (props) => {
 
       if (score1Exists) {
         const split1 = team1Score.split('/')
-        team1.Runout = split1[0].substring(split1[0].length - 3)
+        const splitagain = split1[0].split(" ")
+        team1.Runout = splitagain[2]
         const wickets1 = split1[1].split('*')
         team1.Stumped = wickets1[0]
       }
       if (score2Exists) {
         const split2 = team2Score.split('/')
-        team2.Runout = split2[0].substring(split2[0].length - 3)
+        const splitagain2 = split2[0].split(" ")
+        team2.Runout = splitagain2[2]
         const wickets2 = split2[1].split('*')
         team2.Stumped = wickets2[0]
       }
@@ -283,12 +293,17 @@ const ResponseState = (props) => {
       var ballsFaced1 = 0
       var ballsFaced2 = 0
       for (var x = 0; x < matchStats.bowling[0].scores.length; x++) {
+        if(matchStats.bowling[0].scores[x].Econ !== 0) {
         ballsFaced1 = +ballsFaced1 + +matchStats.bowling[0].scores[x].O
+        }
       }
+      if(matchStats.bowling[1] !== undefined) {
       for (x = 0; x < matchStats.bowling[1].scores.length; x++) {
+        if(matchStats.bowling[0].scores[x].Econ !== 0) {
         ballsFaced2 = +ballsFaced2 + +matchStats.bowling[1].scores[x].O
+        }
       }
-
+    }
       team1.Lbw = ballsFaced1
       team2.Lbw = ballsFaced2
 
@@ -309,7 +324,8 @@ const ResponseState = (props) => {
       }
       // Batting Stats
       // pid, 6s, 4s, balls, runs
-      if (matchStats.batting[1].scores !== []) {
+
+      if (matchStats.batting[0] !== undefined) {
         matchStats.batting[0].scores.forEach((player) =>
           battingStatsTeam1.push([
             player.pid,
@@ -320,7 +336,7 @@ const ResponseState = (props) => {
           ])
         )
       }
-      if (matchStats.batting[1].scores !== []) {
+      if (matchStats.batting[1] !== undefined) {
         matchStats.batting[1].scores.forEach((player) =>
           battingStatsTeam2.push([
             player.pid,
@@ -333,8 +349,9 @@ const ResponseState = (props) => {
       }
       // Bowling stats
       // pid, Dots, W, R, M, O
-      if (matchStats.bowling[0].scores !== []) {
+      if (matchStats.bowling[1] !== undefined) {
         matchStats.bowling[1].scores.forEach((player) =>
+        {if(player.Econ !== 0) {
           bowlingStatsTeam1.push([
             player.pid,
             player['0s'],
@@ -342,11 +359,12 @@ const ResponseState = (props) => {
             player.R,
             player.M,
             player.O,
-          ])
+          ])}}
         )
       }
-      if (matchStats.bowling[0].scores !== []) {
+      if(matchStats.bowling[0] !== undefined) {
         matchStats.bowling[0].scores.forEach((player) =>
+          {if(player.Econ !== 0) {
           bowlingStatsTeam2.push([
             player.pid,
             player['0s'],
@@ -354,12 +372,13 @@ const ResponseState = (props) => {
             player.R,
             player.M,
             player.O,
-          ])
+          ])}}
         )
+        console.log(`BStats: ${bowlingStatsTeam1}`)
       }
       // Fielding stats
       // pid, RO, S, Lbw, C
-      if (matchStats.fielding[1].scores !== []) {
+      if (matchStats.fielding[1] !== undefined) {
         matchStats.fielding[1].scores.forEach((player) =>
           fieldingStatsTeam1.push([
             player.pid,
@@ -370,7 +389,7 @@ const ResponseState = (props) => {
           ])
         )
       }
-      if (matchStats.fielding[0].scores !== []) {
+      if (matchStats.fielding[0] !== undefined) {
         matchStats.fielding[0].scores.forEach((player) =>
           fieldingStatsTeam2.push([
             player.pid,
@@ -392,14 +411,29 @@ const ResponseState = (props) => {
       // Combined stats
       // PlayerID,	Name,	Runout,	Stumped,	Lbw,	Catch,	Dots,	Wickets,	RunsBowling,	Maidens,	Overs,	Sixes,	Fours,	Balls,	RunsBatting,	MOTM,
 
-      console.log(`BaST1: ${JSON.stringify(battingStatsTeam1)}`)
-      console.log(`BaST2: ${JSON.stringify(battingStatsTeam2)}`)
+      // console.log(`BaST1: ${JSON.stringify(battingStatsTeam1)}`)
+      // console.log(`BaST2: ${JSON.stringify(battingStatsTeam2)}`)
       console.log(`BoST1: ${JSON.stringify(bowlingStatsTeam1)}`)
       console.log(`BoST2: ${JSON.stringify(bowlingStatsTeam2)}`)
-      console.log(`FST1: ${JSON.stringify(fieldingStatsTeam1)}`)
-      console.log(`FST2: ${JSON.stringify(fieldingStatsTeam2)}`)
-      console.log(`TS1: ${JSON.stringify(teamSheet1)}`)
-      console.log(`TS2: ${JSON.stringify(teamSheet2)}`)
+      // console.log(`FST1: ${JSON.stringify(fieldingStatsTeam1)}`)
+      // console.log(`FST2: ${JSON.stringify(fieldingStatsTeam2)}`)
+      // console.log(`TS1: ${JSON.stringify(teamSheet1)}`)
+      // console.log(`TS2: ${JSON.stringify(teamSheet2)}`)
+
+      bowlingStatsTeam1.forEach((bowler) => {
+        for(var i = 0; i < bowler.length; i++) {
+          if(bowler[i] == null) {
+            bowler[i] = 0
+          }
+        }
+      })
+      bowlingStatsTeam2.forEach((bowler) => {
+        for(var i = 0; i < bowler.length; i++) {
+          if(bowler[i] == null) {
+            bowler[i] = 0
+          }
+        }
+      })
 
       var index = 0
       teamSheet1.forEach((player) => {
@@ -455,6 +489,7 @@ const ResponseState = (props) => {
             matchInfo[index].Overs = bowler[5]
           }
         })
+        console.log(`Next player on teamsheet`)
         fieldingStatsTeam2.forEach((fielder) => {
           if (fielder[0] === player[0]) {
             matchInfo[index].Runout = fielder[1]
