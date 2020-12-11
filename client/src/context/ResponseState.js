@@ -4,6 +4,8 @@ import Axios from 'axios'
 import ResponseContext from './responseContext'
 import ResponseReducer from './responseReducer'
 
+
+// Example api responses for testing
 import fantasySummary from '../fantasySummary.json'
 import fantasySummary_1team from '../fantasySum_1team.json'
 import cricketScore from '../fantasySco_1team.json'
@@ -85,17 +87,6 @@ class playerInfo {
     this.Balls = 0
     this.RunsBatting = 0
     this.MotM = 0
-  }
-}
-
-class TeamInfo {
-  constructor(matchID, team_name) {
-    this.MatchIDPN = '' + matchID + team_name
-    this.PlayerID = null
-    this.Name = null
-    this.Runout = 0
-    this.Stumped = 0
-    this.Lbw = 0
   }
 }
 
@@ -222,16 +213,6 @@ const ResponseState = (props) => {
       const player21 = new playerInfo(matchID, 'P21')
       const player22 = new playerInfo(matchID, 'P22')
 
-      const team1 = new TeamInfo(matchID, matchStats.team[0].name)
-      const team2 = new TeamInfo(matchID, matchStats.team[1].name)
-      const teamHeadings = {
-        Name: 'Team Names',
-        Runout: 'Score',
-        Stumped: 'Wickets',
-        Lbw: 'Overs Faced',
-      }
-      const blankHeadings = {}
-
       const matchInfo = [
         player1,
         player2,
@@ -255,76 +236,16 @@ const ResponseState = (props) => {
         player20,
         player21,
         player22,
-        blankHeadings,
-        blankHeadings,
-        blankHeadings,
-        blankHeadings,
-        teamHeadings,
-        team1,
-        team2,
       ]
 
-      team1.Name = matchScore['team-1']
-      team2.Name = matchScore['team-2']
+      // Add players to teamsheets
 
-      // Needs to be commennted as breaks if score nnot availabble for both teams
-
-      // Need to check for team name in string then check for scores
-      const splitScore = matchScore.score.split(' v ')
-      const team1Score = splitScore[0]
-      const team2Score = splitScore[1]
-
-      // Check if score contains /
-      const score1Exists = team1Score.includes('/')
-      const score2Exists = team2Score.includes('/')
-
-      if (score1Exists) {
-        const split1 = team1Score.split('/')
-        const splitagain = split1[0].split(" ")
-        team1.Runout = splitagain[2]
-        const wickets1 = split1[1].split('*')
-        team1.Stumped = wickets1[0]
-      }
-      if (score2Exists) {
-        const split2 = team2Score.split('/')
-        const splitagain2 = split2[0].split(" ")
-        team2.Runout = splitagain2[2]
-        const wickets2 = split2[1].split('*')
-        team2.Stumped = wickets2[0]
-      }
-
-      var ballsFaced1 = 0
-      var ballsFaced2 = 0
-      for (var x = 0; x < matchStats.bowling[0].scores.length; x++) {
-        if(matchStats.bowling[0].scores[x].Econ !== 0) {
-        ballsFaced1 = +ballsFaced1 + +matchStats.bowling[0].scores[x].O
-        }
-      }
-      if(matchStats.bowling[1] !== undefined) {
-      for (x = 0; x < matchStats.bowling[1].scores.length; x++) {
-        if(matchStats.bowling[0].scores[x].Econ !== 0) {
-        ballsFaced2 = +ballsFaced2 + +matchStats.bowling[1].scores[x].O
-        }
-      }
-    }
-      team1.Lbw = ballsFaced1
-      team2.Lbw = ballsFaced2
-
-      if (matchStats.fielding[0].title.includes(matchStats.team[0].name)) {
         matchStats.team[0].players.forEach((player) =>
-          teamSheet1.push([player.pid, player.name])
-        )
+          teamSheet1.push([player.pid, player.name]))
+
         matchStats.team[1].players.forEach((player) =>
-          teamSheet2.push([player.pid, player.name])
-        )
-      } else {
-        matchStats.team[1].players.forEach((player) =>
-          teamSheet1.push([player.pid, player.name])
-        )
-        matchStats.team[0].players.forEach((player) =>
-          teamSheet2.push([player.pid, player.name])
-        )
-      }
+          teamSheet2.push([player.pid, player.name]))
+
       // Batting Stats
       // pid, 6s, 4s, balls, runs
 
@@ -350,7 +271,7 @@ const ResponseState = (props) => {
           ])
         )
       }
-      // Bowling stats
+      // Bowling stats, if econ != 0 is to remove stats on bowlers who didnt bowl as they had position in the overs slot 
       // pid, Dots, W, R, M, O
       if (matchStats.bowling[1] !== undefined) {
         matchStats.bowling[1].scores.forEach((player) =>
@@ -416,13 +337,14 @@ const ResponseState = (props) => {
 
       // console.log(`BaST1: ${JSON.stringify(battingStatsTeam1)}`)
       // console.log(`BaST2: ${JSON.stringify(battingStatsTeam2)}`)
-      console.log(`BoST1: ${JSON.stringify(bowlingStatsTeam1)}`)
-      console.log(`BoST2: ${JSON.stringify(bowlingStatsTeam2)}`)
+      // console.log(`BoST1: ${JSON.stringify(bowlingStatsTeam1)}`)
+      // console.log(`BoST2: ${JSON.stringify(bowlingStatsTeam2)}`)
       // console.log(`FST1: ${JSON.stringify(fieldingStatsTeam1)}`)
       // console.log(`FST2: ${JSON.stringify(fieldingStatsTeam2)}`)
       // console.log(`TS1: ${JSON.stringify(teamSheet1)}`)
       // console.log(`TS2: ${JSON.stringify(teamSheet2)}`)
 
+      // Replacing null values with 0
       bowlingStatsTeam1.forEach((bowler) => {
         for(var i = 0; i < bowler.length; i++) {
           if(bowler[i] == null) {
