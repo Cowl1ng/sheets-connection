@@ -42,7 +42,6 @@ const headers = [
 const updateSheet = async (matchID, headers, matchInfo) => {
   const sheet = doc.sheetsByTitle[matchID]
   try {
-    console.log(`Updating sheet: ${JSON.stringify(doc.spreadsheetId)}`)
     // Deleteing sheet then remaking it with new info
     await sheet.delete()
     const newSheet = await doc.addSheet({
@@ -57,7 +56,6 @@ const updateSheet = async (matchID, headers, matchInfo) => {
 
 const createSheet = async (matchID, headers, matchInfo) => {
   try {
-    console.log(`New sheet: ${JSON.stringify(doc.spreadsheetId)}`)
     const newSheet = await doc.addSheet({
       title: `${matchID}`,
       headerValues: headers,
@@ -171,8 +169,6 @@ const ResponseState = (props) => {
       const matchID = state.matchID
       const matchStats = state.match.data
       const matchScore = state.matchScore
-
-      console.log(`MS: ${JSON.stringify(matchStats)}`)
       
       const teamSheet1 = []
       // pid, name
@@ -298,7 +294,6 @@ const ResponseState = (props) => {
             player.O,
           ])}}
         )
-        console.log(`BStats: ${bowlingStatsTeam1}`)
       }
       // Fielding stats
       // pid, RO, S, Lbw, C
@@ -414,7 +409,6 @@ const ResponseState = (props) => {
             matchInfo[index].Overs = bowler[5]
           }
         })
-        console.log(`Next player on teamsheet`)
         fieldingStatsTeam2.forEach((fielder) => {
           if (fielder[0] === player[0]) {
             matchInfo[index].Runout = fielder[1]
@@ -429,13 +423,9 @@ const ResponseState = (props) => {
         }
         index++
       })
-      console.log(`MI: ${JSON.stringify(matchInfo)}`)
-      console.log(`Head: ${headers}`)
 
       // GOOGLESHEETS CONNECTION
       const res = await Axios.get(`/api/key`)
-      console.log(`Cleint_EMAIL: ${res.data.client_email}`)
-      console.log(`private_key: ${res.data.private_key}`)
       // Authentication for connecting to sheet
       await doc.useServiceAccountAuth(require('../creds-from-google.json'))
       console.log(`Authenticated sheets`)
@@ -443,7 +433,6 @@ const ResponseState = (props) => {
       await doc.loadInfo()
       console.log(`loaded sheet`)
       const sheets = doc.sheetsByIndex
-      console.log(`Loaded sheets by index`)
       // Check if sheet already exists
       var sheetTitles = []
       for (const sheet of sheets) {
