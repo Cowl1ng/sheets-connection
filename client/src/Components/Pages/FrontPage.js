@@ -78,11 +78,7 @@ const FrontPage = () => {
           {loading ? (
             <h1>LOADING...</h1>
           ) : loaded ? (
-            <h1>
-              {matchScore.description}
-              <br />
-              {match.creditsLeft} credits left
-            </h1>
+            <h1>Loaded</h1>
           ) : (
             <h1>Not loaded</h1>
           )}

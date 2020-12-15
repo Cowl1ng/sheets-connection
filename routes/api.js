@@ -49,15 +49,10 @@ router.get('/', async (req, res) => {
 router.get('/stats', async (req, res) => {
   const { matchID, apiKey } = req.query
   console.log(`MID: ${matchID}`)
-
   try {
-    const response = await Axios.get(
-      `https://cricapi.com/api/fantasySummary?apikey=${process.env[apiKey]}&unique_id=${matchID}`
-    )
-    const response2 = await Axios.get(
-      `https://cricapi.com/api/cricketScore?apikey=${process.env[apiKey]}&unique_id=${matchID}`
-    )
-    payload = { matchStats: response.data, matchScore: response2.data }
+    const response = await Axios.get(`https://cricket.sportmonks.com/api/v2.0/fixtures/${matchID}?api_token=${process.env[apiKey]}&include=localteam,visitorteam,bowling.bowler,batting.result,lineup,balls`)
+    // console.log(`PL: ${JSON.stringify(response.data)}`)
+    payload = { matchStats: response.data}
     res.json(payload)
   } catch (error) {
     console.error(error.message)
