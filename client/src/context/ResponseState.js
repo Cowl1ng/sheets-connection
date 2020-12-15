@@ -208,6 +208,8 @@ const ResponseState = (props) => {
       const player20 = new playerInfo(matchID, 'P20')
       const player21 = new playerInfo(matchID, 'P21')
       const player22 = new playerInfo(matchID, 'P22')
+      const player23 = new playerInfo(matchID, 'P23')
+      const player24 = new playerInfo(matchID, 'P24')
 
       const matchInfo = [
         player1,
@@ -232,93 +234,105 @@ const ResponseState = (props) => {
         player20,
         player21,
         player22,
+        player23,
+        player24
       ]
 
       // Add players to teamsheets
+        const localteamID = matchStats.localteam.id
+        const visitorteamID = matchStats.visitorteam.id
+        console.log(`Res: ${JSON.stringify(matchStats)}`)
 
-        matchStats.team[0].players.forEach((player) =>
-          teamSheet1.push([player.pid, player.name]))
+        matchStats.lineup.forEach((player) => {
+          if (player.lineup.team_id === localteamID) {
+            teamSheet1.push([player.id, player.fullname])
+          } else {
+            teamSheet2.push([player.id, player.fullname])
+          }
+        
+        }
+        )
 
-        matchStats.team[1].players.forEach((player) =>
-          teamSheet2.push([player.pid, player.name]))
-
-      // Batting Stats
-      // pid, 6s, 4s, balls, runs
-
-      if (matchStats.batting[0] !== undefined) {
-        matchStats.batting[0].scores.forEach((player) =>
-          battingStatsTeam1.push([
-            player.pid,
-            player['6s'],
-            player['4s'],
-            player['B'],
-            player['R'],
-          ])
-        )
+// Batting Stats
+// pid, 6s, 4s, balls, runs
+if(matchStats.batting !== '[]') {
+  matchStats.batting.forEach(batter => {
+    if(batter.team_id === localteamID) {
+      battingStatsTeam1.push([batter.player_id, batter.six_x, batter.four_x, batter.ball, batter.score])
+    } else {
+      battingStatsTeam2.push([batter.player_id, batter.six_x, batter.four_x, batter.ball, batter.score])
+    }
+  })
+  // Fielding stats
+  // pid, RO, S, Lbw, C
+  // Initialise fielding stats by lineup
+  teamSheet1.forEach(player => {
+    fieldingStatsTeam1.push([player[0], 0, 0, 0, 0])
+  })
+  
+  teamSheet2.forEach(player => {
+    fieldingStatsTeam2.push([player[0], 0, 0, 0, 0])
+  })
+  
+  matchStats.batting.forEach(batter => {
+    if(batter.team_id !== localteamID) {
+      var index = teamSheet1.map(obj => obj[0]).indexOf(batter.catch_stump_player_id)
+      // Runout score_id: 63
+      if(index !== -1) {
+        if(batter.score_id === 63)  {
+          fieldingStatsTeam1[index][1] ++
+        } 
+        // Stumpings score_id: 56 
+        else if(batter.score_id === 56) {
+          fieldingStatsTeam1[index][2] ++
+        } 
+        // LBW score_id: 83 
+        
+        else if(batter.score_id === 83) {
+          fieldingStatsTeam1[index][3] ++
+        } 
+        // Catch score_id: 54 
+        else if(batter.score_id === 54) {
+          fieldingStatsTeam1[index][4] ++
+        }
       }
-      if (matchStats.batting[1] !== undefined) {
-        matchStats.batting[1].scores.forEach((player) =>
-          battingStatsTeam2.push([
-            player.pid,
-            player['6s'],
-            player['4s'],
-            player['B'],
-            player['R'],
-          ])
-        )
+    } else {
+      var index = teamSheet2.map(obj => obj[0]).indexOf(batter.catch_stump_player_id)
+      if(index !== -1) {
+        // Runout score_id: 63
+        if(batter.score_id === 63)  {
+          fieldingStatsTeam2[index][1] ++
+        } 
+        // Stumpings score_id: 56 
+        else if(batter.score_id === 56) {
+          fieldingStatsTeam2[index][2] ++
+        } 
+        // LBW score_id: 83 
+        else if(batter.score_id === 83) {
+          fieldingStatsTeam2[index][3] ++
+        } 
+        // Catch score_id: 54 
+        else if(batter.score_id === 54) {
+          fieldingStatsTeam2[index][4] ++
+        }
+      } 
+    }
+  })
+  
+  }
+  
+  
+  //  Bowling stats
+  // pid, Dots, W, R, M, O
+  if(matchStats.bowling !== '[]') {
+    matchStats.bowling.forEach(bowler => {
+      if(bowler.team_id === localteamID) {
+        bowlingStatsTeam1.push([bowler.player_id, 0, bowler.wickets, bowler.runs, bowler.medians, bowler.overs])
+      } else {
+        bowlingStatsTeam2.push([bowler.player_id, 0, bowler.wickets, bowler.runs, bowler.medians, bowler.overs])
       }
-      // Bowling stats, if econ != 0 is to remove stats on bowlers who didnt bowl as they had position in the overs slot 
-      // pid, Dots, W, R, M, O
-      if (matchStats.bowling[1] !== undefined) {
-        matchStats.bowling[1].scores.forEach((player) =>
-        {if(player.Econ !== 0) {
-          bowlingStatsTeam1.push([
-            player.pid,
-            player['0s'],
-            player.W,
-            player.R,
-            player.M,
-            player.O,
-          ])}}
-        )
-      }
-      if(matchStats.bowling[0] !== undefined) {
-        matchStats.bowling[0].scores.forEach((player) =>
-          {if(player.Econ !== 0) {
-          bowlingStatsTeam2.push([
-            player.pid,
-            player['0s'],
-            player.W,
-            player.R,
-            player.M,
-            player.O,
-          ])}}
-        )
-      }
-      // Fielding stats
-      // pid, RO, S, Lbw, C
-      if (matchStats.fielding[1] !== undefined) {
-        matchStats.fielding[1].scores.forEach((player) =>
-          fieldingStatsTeam1.push([
-            player.pid,
-            player['runout'],
-            player['stumped'],
-            player['lbw'],
-            player['catch'],
-          ])
-        )
-      }
-      if (matchStats.fielding[0] !== undefined) {
-        matchStats.fielding[0].scores.forEach((player) =>
-          fieldingStatsTeam2.push([
-            player.pid,
-            player['runout'],
-            player['stumped'],
-            player['lbw'],
-            player['catch'],
-          ])
-        )
-      }
+    })
+    }
       // Combining stats
 
       // Batting Stats
@@ -339,21 +353,21 @@ const ResponseState = (props) => {
       // console.log(`TS1: ${JSON.stringify(teamSheet1)}`)
       // console.log(`TS2: ${JSON.stringify(teamSheet2)}`)
 
-      // Replacing null values with 0
-      bowlingStatsTeam1.forEach((bowler) => {
-        for(var i = 0; i < bowler.length; i++) {
-          if(bowler[i] == null) {
-            bowler[i] = 0
-          }
-        }
-      })
-      bowlingStatsTeam2.forEach((bowler) => {
-        for(var i = 0; i < bowler.length; i++) {
-          if(bowler[i] == null) {
-            bowler[i] = 0
-          }
-        }
-      })
+      // // Replacing null values with 0
+      // bowlingStatsTeam1.forEach((bowler) => {
+      //   for(var i = 0; i < bowler.length; i++) {
+      //     if(bowler[i] == null) {
+      //       bowler[i] = 0
+      //     }
+      //   }
+      // })
+      // bowlingStatsTeam2.forEach((bowler) => {
+      //   for(var i = 0; i < bowler.length; i++) {
+      //     if(bowler[i] == null) {
+      //       bowler[i] = 0
+      //     }
+      //   }
+      // })
 
       var index = 0
       teamSheet1.forEach((player) => {
@@ -384,14 +398,19 @@ const ResponseState = (props) => {
             matchInfo[index].Catch = fielder[4]
           }
         })
-        if (player[0] === matchStats['man-of-the-match'].pid) {
+        if (player[0] === matchStats.man_of_match_id) {
           matchInfo[index].MotM = 1
         }
         index++
       })
+      console.log(matchInfo)
       teamSheet2.forEach((player) => {
+        console.log(`Name: ${player[0]}`)
+        console.log(`In: ${index}`)
+        
         matchInfo[index].Name = player[1]
         matchInfo[index].PlayerID = player[0]
+        console.log(`MI: ${JSON.stringify(matchInfo[index])}`)
         battingStatsTeam2.forEach((batter) => {
           if (batter[0] === player[0]) {
             matchInfo[index].Sixes = batter[1]
@@ -418,7 +437,7 @@ const ResponseState = (props) => {
           }
         })
 
-        if (player[0] === matchStats['man-of-the-match'].pid) {
+        if (player[0] === matchStats.man_of_match_id) {
           matchInfo[index].MotM = 1
         }
         index++
