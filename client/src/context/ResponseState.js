@@ -241,7 +241,6 @@ const ResponseState = (props) => {
       // Add players to teamsheets
         const localteamID = matchStats.localteam.id
         const visitorteamID = matchStats.visitorteam.id
-        console.log(`Res: ${JSON.stringify(matchStats)}`)
 
         matchStats.lineup.forEach((player) => {
           if (player.lineup.team_id === localteamID) {
@@ -276,7 +275,7 @@ if(matchStats.batting !== '[]') {
   
   matchStats.batting.forEach(batter => {
     if(batter.team_id !== localteamID) {
-      var index = teamSheet1.map(obj => obj[0]).indexOf(batter.catch_stump_player_id)
+      var index = teamSheet1.map(player => player[0]).indexOf(batter.catch_stump_player_id)
       // Runout score_id: 63
       if(index !== -1) {
         if(batter.score_id === 63)  {
@@ -297,7 +296,7 @@ if(matchStats.batting !== '[]') {
         }
       }
     } else {
-      var index = teamSheet2.map(obj => obj[0]).indexOf(batter.catch_stump_player_id)
+      var index = teamSheet2.map(player => player[0]).indexOf(batter.catch_stump_player_id)
       if(index !== -1) {
         // Runout score_id: 63
         if(batter.score_id === 63)  {
@@ -333,8 +332,34 @@ if(matchStats.batting !== '[]') {
       }
     })
     }
-      // Combining stats
 
+  // Calculating dot balls
+  if(matchStats.balls !== '[]') {
+    const scoreIDs = []
+    matchStats.balls.forEach(ball => {
+      var index1 = scoreIDs.map(element => element[0]).indexOf(ball.score_id)
+      if(index1 === -1) {
+        scoreIDs.push([ball.score_id, ball.ball])
+      }
+      if(ball.score_id === 82 || ball.score_id === 83 || ball.score_id === 54 || ball.score_id === 79 || ball.score_id === 55) {
+        if (ball.score_id === 83) {
+        }
+      if(ball.team.id !== localteamID) {
+        var index = bowlingStatsTeam1.map(player => player[0]).indexOf(ball.bowler_id)
+        if(index !== -1) {
+          bowlingStatsTeam1[index][1] ++
+        }
+      } else {
+        var index = bowlingStatsTeam2.map(player => player[0]).indexOf(ball.bowler_id)
+        if(index !== -1) {         
+          bowlingStatsTeam2[index][1] ++
+        }
+      }
+    }})
+    console.log(`ScoreIDs: ${scoreIDs}`)
+  }
+  
+      // Combining stats
       // Batting Stats
       // pid, Sixes, Fours, balls, runs
       // Bowling stats
