@@ -341,7 +341,7 @@ if(matchStats.batting !== '[]') {
       if(index1 === -1) {
         scoreIDs.push([ball.score_id, ball.ball])
       }
-      if(ball.score_id === 82 || ball.score_id === 83 || ball.score_id === 54 || ball.score_id === 79 || ball.score_id === 55) {
+      if(ball.score_id === 82 || ball.score_id === 83 || ball.score_id === 54 || ball.score_id === 79 || ball.score_id === 55 || ball.score_id === 4 || ball.score_id === 41 || ball.score_id === 1 || ball.score_id === 63) {
         if (ball.score_id === 83) {
         }
       if(ball.team.id !== localteamID) {
