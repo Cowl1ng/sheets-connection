@@ -14,6 +14,9 @@ import { GET_MATCH_STATS, MATCHES_LOADED } from './types'
 
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 // Spreadsheet key is the long id in the sheets URL
+// const doc = new GoogleSpreadsheet(
+//   '1gHTeqFudAPL7GOKToSVTyuwHqdkXBQOl1NzlYCVnk3c'
+// )
 const doc = new GoogleSpreadsheet(
   '1gHTeqFudAPL7GOKToSVTyuwHqdkXBQOl1NzlYCVnk3c'
 )
@@ -210,6 +213,10 @@ const ResponseState = (props) => {
       const player22 = new playerInfo(matchID, 'P22')
       const player23 = new playerInfo(matchID, 'P23')
       const player24 = new playerInfo(matchID, 'P24')
+      const player25 = new playerInfo(matchID, 'P25')
+      const player26 = new playerInfo(matchID, 'P26')
+      const player27 = new playerInfo(matchID, 'P27')
+      const player28 = new playerInfo(matchID, 'P28')
 
       const matchInfo = [
         player1,
@@ -235,7 +242,11 @@ const ResponseState = (props) => {
         player21,
         player22,
         player23,
-        player24
+        player24,
+        player25,
+        player26,
+        player27,
+        player28
       ]
 
       // Add players to teamsheets
@@ -342,8 +353,6 @@ if(matchStats.batting !== '[]') {
         scoreIDs.push([ball.score_id, ball.ball])
       }
       if(ball.score_id === 82 || ball.score_id === 83 || ball.score_id === 54 || ball.score_id === 79 || ball.score_id === 55 || ball.score_id === 4 || ball.score_id === 41 || ball.score_id === 1 || ball.score_id === 63) {
-        if (ball.score_id === 83) {
-        }
       if(ball.team.id !== localteamID) {
         var index = bowlingStatsTeam1.map(player => player[0]).indexOf(ball.bowler_id)
         if(index !== -1) {
@@ -491,6 +500,7 @@ if(matchStats.batting !== '[]') {
       } else {
         console.log(`Creating sheet`)
         createSheet(matchID, headers, matchInfo)
+        console.log(`Created sheet`)
       }
     }
   }
