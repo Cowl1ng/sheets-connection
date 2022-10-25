@@ -347,7 +347,8 @@ if(matchStats.batting !== '[]') {
   // Calculating dot balls
   if(matchStats.balls !== '[]') {
     const scoreIDs = []
-    const dotIDs = [1, 4, 27, 30, 35, 37, 41, 43, 54, 55, 63 78, 79, 82, 83]
+    const dotIDs = [1,2,3,4,5,26,27,28,29,30,35,36,37,38,39,41,42,43,44,45,50,54,55,56,57,58,63,64,76,77,78,79,80,81,82,83,84,85,86,87,92]
+    
     matchStats.balls.forEach(ball => {
       var index1 = scoreIDs.map(element => element[0]).indexOf(ball.score_id)
       if(index1 === -1) {
