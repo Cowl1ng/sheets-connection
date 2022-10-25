@@ -347,12 +347,12 @@ if(matchStats.batting !== '[]') {
   // Calculating dot balls
   if(matchStats.balls !== '[]') {
     const scoreIDs = []
+    const dotIDs = [1, 4, 27, 30, 35, 37, 41, 43, 54, 55, 63 78, 79, 82, 83]
     matchStats.balls.forEach(ball => {
       var index1 = scoreIDs.map(element => element[0]).indexOf(ball.score_id)
       if(index1 === -1) {
         scoreIDs.push([ball.score_id, ball.ball])
       }
-      const dotIDs = [1, 4, 27, 30, 35, 37, 41, 43, 54, 55, 63 78, 79, 82, 83]
       if(dotIDs.includes(ball.score_id)) {
       if(ball.team.id !== localteamID) {
         var index = bowlingStatsTeam1.map(player => player[0]).indexOf(ball.bowler_id)
