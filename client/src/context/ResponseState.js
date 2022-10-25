@@ -352,7 +352,8 @@ if(matchStats.batting !== '[]') {
       if(index1 === -1) {
         scoreIDs.push([ball.score_id, ball.ball])
       }
-      if(ball.score_id === 82 || ball.score_id === 83 || ball.score_id === 54 || ball.score_id === 79 || ball.score_id === 55 || ball.score_id === 4 || ball.score_id === 41 || ball.score_id === 1 || ball.score_id === 63) {
+      const dotIDs = [1, 4, 27, 30, 35, 37, 41, 43, 54, 55, 63 78, 79, 82, 83]
+      if(dotIDs.includes(ball.score_id)) {
       if(ball.team.id !== localteamID) {
         var index = bowlingStatsTeam1.map(player => player[0]).indexOf(ball.bowler_id)
         if(index !== -1) {
