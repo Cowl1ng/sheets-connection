@@ -15,10 +15,11 @@ import { GET_MATCH_STATS, MATCHES_LOADED } from './types'
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 // Spreadsheet key is the long id in the sheets URL
 // const doc = new GoogleSpreadsheet(
-//   '1gHTeqFudAPL7GOKToSVTyuwHqdkXBQOl1NzlYCVnk3c'
+//   '135Hv6tgp7z3UJUKFz6Hol2u8Y5VuabYuGqTRIwcMHIE'
+10kGOIlpOK_OAmv0ZNkj-Uk4g1h-kzXHj9wQ1rJYitz0
 // )
 const doc = new GoogleSpreadsheet(
-  '135Hv6tgp7z3UJUKFz6Hol2u8Y5VuabYuGqTRIwcMHIE'
+  '10kGOIlpOK_OAmv0ZNkj-Uk4g1h-kzXHj9wQ1rJYitz0'
 )
 
 // Headers for spreadsheet
