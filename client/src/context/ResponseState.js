@@ -18,7 +18,7 @@ const { GoogleSpreadsheet } = require('google-spreadsheet')
 //   '135Hv6tgp7z3UJUKFz6Hol2u8Y5VuabYuGqTRIwcMHIE'
 // )
 const doc = new GoogleSpreadsheet(
-  '10kGOIlpOK_OAmv0ZNkj-Uk4g1h-kzXHj9wQ1rJYitz0'
+  '1rQNKxdgEJwklDoDjE8Z85mgBGYc6Ynp8i5zKm1-J-NM'
 )
 
 // Headers for spreadsheet
